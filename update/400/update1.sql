@@ -1,0 +1,14 @@
+INSERT INTO `tzahlungsart` (`kZahlungsart`, `cName`, `cModulId`, `cKundengruppen`, `cZusatzschrittTemplate`, `cPluginTemplate`, `cBild`, `nSort`, `nMailSenden`, `nActive`, `cAnbieter`, `cTSCode`, `nWaehrendBestellung`, `nCURL`, `nSOAP`, `nSOCKETS`, `nNutzbar`) VALUES (7, 'PayPal', 'za_paypal_jtl', '', '', NULL, '', 0, 1, 1, 'PayPal', 'PAYPAL', 0, 0, 0, 1, 1);
+INSERT INTO `tzahlungsartsprache` (`kZahlungsart`, `cISOSprache`, `cName`, `cGebuehrname`, `cHinweisText`) VALUES (7, 'eng', 'PayPal', 'Fee', ''), (7, 'ger', 'PayPal', 'Gebühr', '');
+UPDATE `temailvorlageoriginal` SET `cDateiname`='freischaltungsemail_nach_newsletteranmeldung' WHERE `kEmailvorlage`='16';
+UPDATE `temailvorlage` SET `cDateiname`='freischaltungsemail_nach_newsletteranmeldung' WHERE `kEmailvorlage`='16';
+UPDATE `temailvorlageoriginal` SET `cDateiname`='kunden_werben_kunden' WHERE `kEmailvorlage`='17';
+UPDATE `temailvorlageoriginal` SET `cDateiname`='kunden_werben_kunden_belohnung' WHERE `kEmailvorlage`='18';
+UPDATE `temailvorlageoriginal` SET `cDateiname`='artikelweiterempfehlen' WHERE `kEmailvorlage`='19';
+UPDATE `temailvorlageoriginal` SET `cDateiname`='bonusguthaben_fuer_bewertung' WHERE `kEmailvorlage`='26';
+UPDATE `temailvorlageoriginal` SET `cDateiname`='anbieterkennzeichnung' WHERE `kEmailvorlage`='28';
+UPDATE `temailvorlage` SET `cDateiname`='kunden_werben_kunden' WHERE `kEmailvorlage`='17';
+UPDATE `temailvorlage` SET `cDateiname`='kunden_werben_kunden_belohnung' WHERE `kEmailvorlage`='18';
+UPDATE `temailvorlage` SET `cDateiname`='artikelweiterempfehlen' WHERE `kEmailvorlage`='19';
+UPDATE `temailvorlage` SET `cDateiname`='bonusguthaben_fuer_bewertung' WHERE `kEmailvorlage`='26';
+UPDATE `temailvorlage` SET `cDateiname`='anbieterkennzeichnung' WHERE `kEmailvorlage`='28';

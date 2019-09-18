@@ -1,0 +1,78 @@
+#menu_wrapper {
+   height: 36px;
+   width: 100%;
+   background: url('../gfx/layout/menu_shadow.png') repeat-x left bottom;
+}
+
+#menu {
+   height: 32px;
+	z-index: 100;
+	position: relative;
+	background: url(../gfx/layout/menu_bg.png) repeat-x;
+}
+
+#menu .menu {
+   position: absolute;
+}
+
+#menu * {
+   list-style: none;
+   border: 0;
+   padding: 0;
+   margin: 0;
+}
+
+ul#menu,ul#menu ul{
+	margin:0;list-style:none;}
+ul#menu ul{
+	display:none;position:absolute;left:0;top:100%;-moz-box-shadow:0.7px 0.7px 1px #777777;-webkit-box-shadow:0.7px 0.7px 1px #777777;box-shadow:0.7px 0.7px 1px #777777;padding:0 9px 9px;background-color:#FFF;background-image:none;border-width:1px;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;border-style:solid;border-color:#d8d9da;}
+ul#menu li:hover>*{
+	display:block;}
+ul#menu li:hover{
+	position:relative;}
+ul#menu ul ul{
+	position:absolute;left:100%;top:0;}
+ul#menu{
+	padding:1px 1px 1px 0;display:block;font-size:0;float:left;}
+ul#menu li{
+	display:block;white-space:nowrap;font-size:0;float:left;}
+ul#menu>li,ul#menu li{
+	margin:0 0 0 1px;}
+ul#menu ul>li{
+	margin:1px 0 0;}
+ul#menu a:active, ul#menu a:focus{
+	outline-style:none;}
+ul#menu a{
+	display:block;vertical-align:middle;text-align:left;text-decoration:none;font:13px Arial,sans-serif;color:#262626;line-height:30px;padding:0 12px;}
+ul#menu ul li{
+	float:none;margin:9px 0 0;}
+ul#menu ul a{
+	text-align:left;padding:8px 0 0 0;background-color:#FFF;background-image:none;border-width:1px 0 0 0;border-style:solid;border-color:#D9D9D9;border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;font:13px Arial,sans-serif;color:#333333;text-decoration:none;}
+ul#menu li:hover>a{
+	background-color:#fff;border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;-khtml-border-radius: 3px;}
+ul#menu img{
+	border:none;vertical-align:middle;margin-right:10px;}
+ul#menu img.over{
+	display:none;}
+ul#menu li:hover > a img.def{
+	display:none;}
+ul#menu li:hover > a img.over{
+	display:inline;}
+ul#menu span{
+	display:block;overflow:visible;background-position:right center;background-repeat:no-repeat;padding-right:0px;}
+ul#menu ul span{
+	background-image:url("../gfx/layout/arrowsub.gif");padding-right:27px;}
+ul#menu ul li:hover>a{
+	background-color:#fff;text-decoration:none;}
+ul#menu ._>li>a{
+	padding:0;}
+ul#menu li.subfirst>a{
+	border-width:0;border-style:none;padding:0;}
+ul#menu li.subfirst:hover>a{
+	border-style:none;}
+	
+	
+ul#menu li.noperm>a{
+	color: #a0a0a0;}
+ul#menu li.noperm:hover>a{
+	}

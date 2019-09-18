@@ -1,0 +1,145 @@
+<FilesMatch "check_mws_access.php">
+    <IfModule mod_access_compat.c>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+	Allow from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "update_frontend_links.php">
+    <IfModule mod_access_compat.c>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+	Allow from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "backup_tables.php">
+    <IfModule mod_access_compat.c>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+	Allow from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "migrate_tables.php">
+    <IfModule mod_access_compat.c>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+	Allow from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "ipn.php">
+    <IfModule mod_access_compat.c>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+	Allow from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "cron.php">
+    <IfModule mod_access_compat.c>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+	Allow from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "lpa_ajax_.*.php">
+    <IfModule mod_access_compat.c>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+	Allow from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    # Falls Sie Probleme mit dem IPN-Empfang bei sich aendernden Versionen haben, oder
+    # falls der Shop in einem Unterverzeichnis laeuft, muessen Sie dieses evtl. (nicht immer!) hier angeben.
+    # Im Normalfall ist die RewriteBase immer relativ zur .htaccess-Position. 
+    # Es gibt aber Server-Konstellationen, bei denen das offenbar nicht der Fall ist.
+    #
+    # RewriteBase /includes/plugins/s360_amazon_lpa_shop4/
+    RewriteRule ^version/100/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/101/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/102/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/103/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/104/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/105/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/106/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/107/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/108/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/109/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/110/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/111/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/112/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/113/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/114/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/115/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/116/frontend/ipn.php$ version/118/frontend/ipn.php
+    RewriteRule ^version/117/frontend/ipn.php$ version/118/frontend/ipn.php
+
+    RewriteRule ^version/100/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/101/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/102/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/103/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/104/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/105/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/106/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/107/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/108/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/109/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/110/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/111/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/112/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/113/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/114/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/115/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/116/frontend/cron.php$ version/118/frontend/cron.php
+    RewriteRule ^version/117/frontend/cron.php$ version/118/frontend/cron.php
+
+</IfModule>

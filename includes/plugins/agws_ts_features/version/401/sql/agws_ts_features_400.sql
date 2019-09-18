@@ -1,0 +1,3 @@
+ALTER TABLE `xplugin_agws_ts_features_config`
+	ADD COLUMN `bTS_ProductStickerShow` TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'Anzeigeoption TS-ProductSticker (0=nein, 1=ja)' AFTER `cTS_ReviewStickerCode`,
+	ADD COLUMN `iTS_ProductStickerArt` INT(1) NOT NULL DEFAULT '0' COMMENT 'Anzeigeart Product-Sticker (1=Anzeige Standard-Artikel,Vater-Artikel und Kind-Artikel, 2=Anzeige Standard-Artikel und Kind-Anzeige)' AFTER `bTS_ProductStickerShow`;

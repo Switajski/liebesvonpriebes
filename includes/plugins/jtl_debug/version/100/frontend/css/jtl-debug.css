@@ -1,0 +1,323 @@
+#jtl-debug-hide, #jtl-debug-show{
+	position: absolute;
+	top: 21px;
+	left: 10px;
+	z-index: 9999;
+}
+
+body.jtl-debug-open {
+	overflow: hidden;
+}
+
+#jtl-debug-content, #jtl-debug-content * {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#jtl-debug-content {
+	background: rgba(255, 255, 255, 0.95);
+	position: fixed;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 85px 20px 20px 20px;
+	overflow-y: auto;
+	z-index: 99999;
+	font-family: 'Arial', sans-serif;
+	font-size: 12px;
+	line-height: 22px;
+	top: -100%;
+	opacity: 0;
+	transition: opacity 600ms 500ms;
+}
+
+.jtl-debug-open #jtl-debug-content {
+	transition: opacity 600ms;
+	pointer-events: all;
+	opacity: 1;
+	top: 0;
+}
+
+#jtl-debug-content .jtl-debug-search {
+	position: fixed;
+	padding: 0;
+	left: 0;
+	background: #5cbcf6;
+	width: 100%;
+	z-index: 1;
+	text-align: center;
+	height: 60px;
+	top: -80px;
+	opacity: 0;
+	pointer-events: none;
+	transition: top 500ms, opacity 300ms 200ms;
+}
+
+.jtl-debug-open #jtl-debug-content .jtl-debug-search {
+	transition: top 500ms 600ms, opacity 300ms 600ms;
+	pointer-events: all;
+	opacity: 1;
+	top: 0;
+}
+
+.jtl-debug-heading { font-weight: bold; cursor: pointer; }
+
+.jtl-debug-heading:hover { text-decoration: underline; }
+
+.empty > .jtl-debug-heading:hover { text-decoration: none; }
+
+.empty > .jtl-debug-heading { cursor: default; }
+
+#jtl-debug-content ul,
+.jtl-debug-wrapper
+{ padding-left: 20px; }
+
+.jtl-debug-details,
+.jtl-debug-details.expandable,
+.jtl-debug-wrapper { }
+
+.jtl-found-element { display: inline; color: red; }
+
+ul.jtl-found-parent, ul.jtl-found-parent > .jtl-debug-wrapper { display: block; }
+
+.jtl-debug-details.expandable.jtl-found-parent {
+	display: list-item;
+	list-style: none;
+}
+
+li.jtl-found-parent {
+	display: list-item;
+	list-style: none;
+}
+
+#jtl-debug-content-toggle { cursor: pointer; }
+
+.jtl-debug-details.level-0 {
+	display: list-item;
+	list-style: none;
+}
+
+.jtl-debug-details.click-parent,
+.jtl-debug-details-expandable.click-parent,
+.click-parent .jtl-debug-details,
+.click-parent .jtl-debug-details.expandable { display: list-item; list-style: none; }
+
+.click-parent > .jtl-debug-wrapper { display: block; }
+
+#jtl-debug-content #jtl-debug-searchbox {
+	margin: 10px auto;
+	height: 35px;
+	line-height: 21px;
+	width: 300px;
+
+	display: block;
+	padding: 6px 12px;
+	font-size: 14px;
+	color: #555555;
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#jtl-debug-content #jtl-debug-searchbox:focus {
+	border-color: #66afe9;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+	outline: 0 none;
+}
+
+
+#jtl-debug-content #jtl-debug-searchbox:focus {
+	border-color: rgb(106, 180, 240);
+}
+
+#jtl-debug-content .jtl-debug-heading {
+	cursor: pointer;
+	padding: 0 5px 0 26px;
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+}
+
+#jtl-debug-content .jtl-debug-heading:hover {
+	background: #efefef;
+	text-decoration: none;
+}
+
+#jtl-debug-content .expandable > .jtl-debug-heading {
+	padding-left: 5px;
+}
+
+#jtl-debug-content .jtl-debug-path {
+	font-weight: normal;
+	float: right;
+	opacity: 0.7;
+	font-size: 0.9em;
+}
+
+#jtl-debug-content .jtl-debug-path::selection {
+	background: rgb(119, 42, 156);
+	color: white;
+	font-weight: bold;
+}
+
+#jtl-debug-content .jtl-debug-path::-moz-selection {
+	background: rgb(119, 42, 156);
+	color: white;
+	font-weight: bold;
+}
+
+#jtl-debug-content .expandable > .jtl-debug-heading:before {
+	content: '+';
+	font-family: monospace;
+	margin-left: 0;
+	margin-right: 8px;
+	background: #eee;
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	line-height: 14px;
+	text-align: center;
+	color: #666;
+}
+
+#jtl-debug-content .expandable.click-parent > .jtl-debug-heading:before {
+	content: "-";
+}
+
+#jtl-debug-content .key {
+	font-weight: normal;
+	font-style: normal;
+	color: rgb(119, 42, 156);
+}
+
+#jtl-debug-content .expandable.click-parent > .jtl-debug-heading .key {
+	font-weight: bold;
+}
+
+#jtl-debug-content .value {
+	font-weight: normal;
+	margin-left: 5px;
+	color: rgb(0, 85, 151);
+}
+
+#jtl-debug-content .value a {
+	color: inherit;
+	text-decoration: none;
+	border: none;
+}
+
+#jtl-debug-content .value a:hover {
+	text-decoration: underline;
+}
+
+#jtl-debug-content .value.number {
+	color: rgb(0, 85, 151);
+}
+
+#jtl-debug-content .value.string {
+	color: rgb(25, 90, 19);
+}
+
+#jtl-debug-content .value.string:before, #jtl-debug-content .value.string:after {
+	content: '"';
+}
+
+#jtl-debug-content .type {
+	font-weight: normal;
+	font-style: italic;
+	opacity: 0.7;
+}
+
+#jtl-debug-content ul {
+	padding-left: 10px;
+	border-left: 1px dashed #ccc;
+	margin-left: 10px;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+#jtl-debug-list-wrapper {
+	padding: 0;
+	border: 0 none;
+	margin: 0;
+}
+
+#jtl-debug-content .jtl-found-element {
+	background: rgba(255, 0, 0, 0.1);
+	border: 1px solid rgba(82, 17, 17, 0.19);
+	border-radius: 2px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	text-shadow: 0 1px 0 white;
+	margin: 2px 0;
+	padding: 0 5px;
+	line-height: 16px;
+}
+
+#jtl-debug-content .jtl-found-element.value {
+	color: rgb(162, 47, 47) !important;
+}
+
+.show-more {
+	display: none;
+}
+
+.jtl-found-parent.jtl-debug-details.expandable > .jtl-debug-heading .show-more {
+	display: inline;
+	margin-left: 5px;
+	text-decoration: underline;
+	font-weight: normal;
+}
+
+#jtl-debug-content .jtl-show-more-button {
+	width: auto;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 0 9px;
+	line-height: 19px;
+	border: 1px solid rgb(214, 214, 214);
+	border-radius: 2px;
+	margin-left: 5px;
+	color: #999;
+}
+
+#jtl-debug-content .jtl-show-more-button:hover {
+	background: white;
+	color: #000;
+}
+
+#jtl-debug-content .jtl-found-parent.jtl-debug-details.expandable > .jtl-debug-heading .jtl-show-more-button {
+	display: inline-block;
+}
+
+#jtl-debug-search-results {
+	display: inline-block;
+	white-space: nowrap;
+	opacity: 0.5;
+	text-align: left;
+	font-size: 11px;
+	margin-top: 20px;
+}
+
+#jtl-debug-content .jtl-debug-section-heading {
+	background: #eee;
+	padding: 5px 10px;
+	margin: 0 0 10px 0;
+	font-weight: bold;
+	text-shadow: 0 1px 0 white;
+	color: #444;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+#jtl-debug-content .toggle{
+	font-family: monospace;
+	text-decoration: none;
+	padding-left: 5px;
+	font-size: 1.3em;
+}

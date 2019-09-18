@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+	<Name>JTL Exportformat Google Shopping</Name>
+	<Description>Exportformat Google Shopping</Description>
+	<Author>JTL-Software-GmbH</Author>
+	<URL>https://www.jtl-software.de</URL>
+	<XMLVersion>101</XMLVersion>
+	<Shop4Version>400</Shop4Version>
+	<PluginID>jtl_google_shopping</PluginID>
+	<Install>
+		<Version nr="100">
+			<SQL>install.sql</SQL>
+			<CreateDate>2013-08-05</CreateDate>
+		</Version>
+		<Version nr="101">
+			<CreateDate>2014-06-25</CreateDate>
+		</Version>
+		<Version nr="102">
+			<SQL>update.sql</SQL>
+			<CreateDate>2014-08-28</CreateDate>
+		</Version>
+		<Version nr="103">
+			<CreateDate>2015-01-07</CreateDate>
+		</Version>
+		<Version nr="104">
+			<CreateDate>2016-05-09</CreateDate>
+		</Version>
+		<Version nr="105">
+			<CreateDate>2016-07-07</CreateDate>
+		</Version>
+		<Version nr="106">
+			<CreateDate>2016-09-09</CreateDate>
+		</Version>
+		<Version nr="107">
+			<SQL>update.sql</SQL>
+			<CreateDate>2019-03-26</CreateDate>
+		</Version>
+		<Version nr="108">
+			<CreateDate>2019-08-13</CreateDate>
+		</Version>
+		<ExportFormat>
+			<Format>
+				<Name>Google Shopping (Plugin)</Name>
+				<FileName>googleshopping.zip</FileName>
+				<Header></Header>
+				<ContentFile>googleShopping.php</ContentFile>
+				<Encoding>ASCII</Encoding>
+				<VarCombiOption>0</VarCombiOption>
+				<OnlyStockGreaterZero>N</OnlyStockGreaterZero>
+				<OnlyPriceGreaterZero>N</OnlyPriceGreaterZero>
+				<OnlyProductsWithDescription>N</OnlyProductsWithDescription>
+				<ShippingCostsDeliveryCountry>DE</ShippingCostsDeliveryCountry>
+				<EncodingQuote>N</EncodingQuote>
+				<EncodingDoubleQuote>N</EncodingDoubleQuote>
+				<EncodingSemicolon>N</EncodingSemicolon>
+			</Format>
+		</ExportFormat>
+		<Adminmenu>
+			<Customlink sort="4">
+				<Name>Weitere Datenfeeds</Name>
+				<Filename>sprachen.php</Filename>
+			</Customlink>
+			<Customlink sort="2">
+				<Name>Export-Attribute</Name>
+				<Filename>attribute.php</Filename>
+			</Customlink>
+			<Customlink sort="3">
+				<Name>Merkmale mappen</Name>
+				<Filename>mapping.php</Filename>
+			</Customlink>
+			<Settingslink sort="1">
+				<Name>Einstellungen</Name>
+				<Setting type="selectbox" initialValue="neu" sort="3" conf="Y">
+					<Name>Standard Artikelzustand</Name>
+					<Description>Standardmäßiger Zustand der Artikel.</Description>
+					<ValueName>artikle_condition_standard</ValueName>
+					<SelectboxOptions>
+						<Option value="new" sort="1">Neu</Option>
+						<Option value="used" sort="2">Gebraucht</Option>
+						<Option value="refurbished" sort="3">Erneuert</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="text" initialValue="artikelzustand" sort="4" conf="Y">
+					<Name>Funktionsattribut Artikelzustand</Name>
+					<Description>Name des Funktionsattributes in der der Artikelzustand angegeben ist wenn er vom
+						Statndard Artikelzustand abweicht.
+					</Description>
+					<ValueName>artikle_condition</ValueName>
+				</Setting>
+				<Setting type="text" initialValue="googlekat" sort="5" conf="Y">
+					<Name>Funktionsattribut Google Kategorie</Name>
+					<Description>Name des Funktionsattributes in der die Google Kategorie angegeben ist.</Description>
+					<ValueName>artikle_googlekat</ValueName>
+				</Setting>
+				<Setting type="text" initialValue="Webshop" sort="1" conf="Y">
+					<Name>Shopname</Name>
+					<Description>Name des Shops.</Description>
+					<ValueName>shopname</ValueName>
+				</Setting>
+				<Setting type="text" initialValue="Shopbeschreibung" sort="2" conf="Y">
+					<Name>Shop-Beschreibung</Name>
+					<Description>Beschreibung des Shops.</Description>
+					<ValueName>shopbeschreibung</ValueName>
+				</Setting>
+				<Setting type="text" initialValue="20000" sort="6" conf="Y">
+					<Name>Max Items</Name>
+					<Description>Maximale Anzahl an Artikeln pro Datei. Dieser Wert kann nur in 2000er Schritten gewählt
+						werden (2000, 4000, 6000, ..., 100000). Maximal dürfen 100000 Artikel pro Datei exportiert
+						werden.
+					</Description>
+					<ValueName>maxItem</ValueName>
+				</Setting>
+				<Setting type="selectbox" initialValue="0" sort="8" conf="Y">
+					<Name>Artikenummern der Kindartikel exportieren als:</Name>
+					<Description>Nach welchem Schema sollen die Artikelnummern der Kindartikel exportiert werden? Wenn in der Wawi bei den Kindartikel keine eindeutigen Artikelnummern verwendet werden, sollte cArtNr_kArtikel gewählt werden.</Description>
+					<ValueName>ext_artnr_child</ValueName>
+					<SelectboxOptions>
+						<Option value="0" sort="3">Nur cArtNr</Option>
+						<Option value="1" sort="1">cArtNr_kArtikel</Option>
+					</SelectboxOptions>
+				</Setting>
+			</Settingslink>
+		</Adminmenu>
+	</Install>
+</jtlshop3plugin>

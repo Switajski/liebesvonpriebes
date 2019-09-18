@@ -1,0 +1,75 @@
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "../../base/less/base";
+@import "variables";
+
+// United 3.3.2
+// Bootswatch
+// -----------------------------------------------------
+
+//import via CDN
+//@import url("//fonts.googleapis.com/css?family=Ubuntu");
+//import local files
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), url('@{icon-font-path}ubuntu/Ubuntu-Regular.ttf') format('truetype');
+}
+
+// Navbar =====================================================================
+
+.navbar {
+
+  &-default {
+
+    .badge {
+      background-color: #fff;
+      color: @navbar-default-bg;
+    }
+  }
+
+  &-inverse {
+
+    .badge {
+      background-color: #fff;
+      color: @navbar-inverse-bg;
+    }
+  }
+}
+
+.nav-wizard {
+  > li {
+    > a, .nav-badge {
+      color: @link-color;
+    }
+  }
+}
+
+
+//
+// Footer
+// --------------------------------------------------
+
+// Padding fix
+.navbar-default .nav > li > a,
+.navbar-inverse .nav > li > a {
+  padding: 21px 15px;
+}
+
+
+#footer {
+    > .container-block, &.container-block {
+       background-color: @gray-darker;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+            color: #fff;
+        }
+    }   
+}
+
+#footer .panel > div > h5,
+#footer .panel .panel-title {
+        border-bottom: 1px dotted #fff;
+    }

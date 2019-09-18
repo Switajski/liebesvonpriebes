@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
+# You may need RewriteBase on some servers
+#RewriteBase /includes/libs/minify/
+
+# rewrite URLs like "/min/f=..." to "/min/?f=..."
+RewriteRule ^([bfg]=.*)  index.php?$1 [L,NE]
+</IfModule>
+<IfModule mod_env.c>
+# In case AddOutputFilterByType has been added
+SetEnv no-gzip
+</IfModule>
+
+<Files index.php>
+    <IfModule mod_headers.c>
+        Header set Cache-Control "max-age=604800, public"
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Allow from all
+    </IfModule>
+</Files>

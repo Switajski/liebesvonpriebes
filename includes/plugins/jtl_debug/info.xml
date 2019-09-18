@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+	<Name>JTL Debug</Name>
+	<Description>Smarty Debug auf Steroiden. Zum Aktivieren der Debug-Ausgabe im Frontend drücken Sie die Tastenkombination "STRG + ENTER"</Description>
+	<Author>JTL-Software-GmbH</Author>
+	<URL>http://www.jtl-software.de</URL>
+	<XMLVersion>100</XMLVersion>
+	<Shop4Version>405</Shop4Version>
+	<PluginID>jtl_debug</PluginID>
+	<Install>
+		<Version nr="100">
+			<CreateDate>2014-11-18</CreateDate>
+		</Version>
+		<Version nr="101">
+			<CreateDate>2016-08-09</CreateDate>
+		</Version>
+		<Version nr="102">
+			<CreateDate>2017-10-20</CreateDate>
+		</Version>
+		<Hooks>
+			<Hook id="131">131_jtl_debug.php</Hook>
+			<Hook id="132">132_jtl_debug.php</Hook>
+			<Hook id="133">133_jtl_debug.php</Hook>
+			<Hook id="140">140_jtl_debug.php</Hook>
+			<Hook id="153">153_jtl_debug.php</Hook>
+		</Hooks>
+		<Locales>
+			<Variable>
+				<VariableLocalized iso="GER">eigener Debuginput</VariableLocalized>
+				<VariableLocalized iso="ENG">user debug input</VariableLocalized>
+				<Description>Sektionstitel für Benutzer-Debug</Description>
+				<Name>section_user_debug</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Smartyvariablen</VariableLocalized>
+				<VariableLocalized iso="ENG">Smarty variables</VariableLocalized>
+				<Description>Sektionstitel für Smartyvariablen</Description>
+				<Name>section_smarty_variables</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">PHP-Fehler</VariableLocalized>
+				<VariableLocalized iso="ENG">PHP errors</VariableLocalized>
+				<Description>Sektionstitel für PHP-Fehler</Description>
+				<Name>section_php_errors</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">geladene Templates</VariableLocalized>
+				<VariableLocalized iso="ENG">loaded templates</VariableLocalized>
+				<Description>Sektionstitel für PHP-Fehler</Description>
+				<Name>section_loaded_templates</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">registrierte Hooks</VariableLocalized>
+				<VariableLocalized iso="ENG">registered Hooks</VariableLocalized>
+				<Description>Sektionstitel für registrierte Hooks</Description>
+				<Name>section_registered_hooks</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">alle anzeigen</VariableLocalized>
+				<VariableLocalized iso="ENG">show all</VariableLocalized>
+				<Description>Mouseover über [...]in Suchergebnissen</Description>
+				<Name>show_all</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Ergebnisse</VariableLocalized>
+				<VariableLocalized iso="ENG">results</VariableLocalized>
+				<Description>Suchergebnisse</Description>
+				<Name>search_results</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Suchbegriff eingeben</VariableLocalized>
+				<VariableLocalized iso="ENG">enter search term</VariableLocalized>
+				<Description>Platzhalter in Suchfeld</Description>
+				<Name>enter_search_term</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Debugger anzeigen</VariableLocalized>
+				<VariableLocalized iso="ENG">show debugger</VariableLocalized>
+				<Description>Textlink zum Anzeigen des Debuggers</Description>
+				<Name>textlink_show</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Debugger ausblenden</VariableLocalized>
+				<VariableLocalized iso="ENG">hide debugger</VariableLocalized>
+				<Description>Textlink zum Ausblenden des Debuggers</Description>
+				<Name>textlink_hide</Name>
+			</Variable>
+		</Locales>
+		<Adminmenu>
+			<Settingslink sort="1">
+				<Name>Optionen</Name>
+				<Setting type="text" initialValue="spacer" sort="0" conf="N">
+					<Name>Allgemein</Name>
+					<Description></Description>
+					<ValueName>spacer</ValueName>
+				</Setting>
+				<Setting type="selectbox" initialValue="A" sort="1" conf="Y">
+					<Name>JTL Debug aktivieren?</Name>
+					<Description>Fügt die Ausgabe von JTL Debug auf jeder Seite hinzu</Description>
+					<ValueName>jtl_debug_enable</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+						<Option value="A" sort="3">nur für Administratoren</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="2" conf="Y">
+					<Name>Nur bei GET-Parameter aktivieren?</Name>
+					<Description>Zeigt Debug-Ausgabe nur, wenn GET-Parameter übergeben wird</Description>
+					<ValueName>jtl_debug_show_on_query_string</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="text" initialValue="jtl-debug" sort="3" conf="Y">
+					<Name>Name des GET-Parameters</Name>
+					<Description>Das Vorhandensein dieses Parameters wird geprüft (z.B.
+						http://example.com/mein-produkt?jtl-debug würde den Debugger anzeigen)
+					</Description>
+					<ValueName>jtl_debug_query_string</ValueName>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="5" conf="Y">
+					<Name>In Cookie speichern?</Name>
+					<Description>Einmalige Eingabe des GET-Parameter reicht, anschließend bleibt die Ausgabe über
+						Cookies aktiviert
+					</Description>
+					<ValueName>jtl_debug_save_cookie</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="6" conf="Y">
+					<Name>Textlink zum Anzeigen/Ausblenden hinzufügen?</Name>
+					<Description>praktisch beim Debugging auf iPad/iPhone</Description>
+					<ValueName>jtl_debug_show_text_links</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="text" initialValue="spacer" sort="8" conf="N">
+					<Name>Ausgabe</Name>
+					<Description></Description>
+					<ValueName>spacer</ValueName>
+				</Setting>
+				<Setting type="selectbox" initialValue="Y" sort="9" conf="Y">
+					<Name>Anzeige von Smartyvariablen aktivieren?</Name>
+					<Description>In Smarty verfügbare Variablen werden im Debugfenster angezeigt</Description>
+					<ValueName>jtl_debug_show_smarty_vars</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="10" conf="Y">
+					<Name>Anzeige von geladenen Templates aktivieren?</Name>
+					<Description>Von Smarty geladene Templates werden im Debugfenster angezeigt</Description>
+					<ValueName>jtl_debug_show_loaded_templates</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="11" conf="Y">
+					<Name>Anzeige aktiver Hooks aktivieren?</Name>
+					<Description>Zeigt registrierte Hooks an</Description>
+					<ValueName>jtl_debug_show_hooks</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="12" conf="Y">
+					<Name>Anzeige von PHP-Fehlern aktivieren?</Name>
+					<Description>Zeigt PHP-Fehler im Debugfenster an</Description>
+					<ValueName>jtl_debug_show_errors</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="13" conf="Y">
+					<Name>Anzeige der Session aktivieren?</Name>
+					<Description>Zeigt Inhalt der Variablen $_SESSION an</Description>
+					<ValueName>jtl_debug_show_session</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="14" conf="Y">
+					<Name>Anzeige des POST-Objekts aktivieren?</Name>
+					<Description>Zeigt Inhalt der Variablen $_POST an</Description>
+					<ValueName>jtl_debug_show_post</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="15" conf="Y">
+					<Name>Anzeige des GET-Objekts aktivieren?</Name>
+					<Description>Zeigt Inhalt der Variablen $_GET an</Description>
+					<ValueName>jtl_debug_show_get</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="16" conf="Y">
+					<Name>Anzeige des COOKIE-Objekts aktivieren?</Name>
+					<Description>Zeigt den Inhalt der Variablen $_COOKIE an</Description>
+					<ValueName>jtl_debug_show_cookie</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="17" conf="Y">
+					<Name>Anzeige des Script-Speicherverbauchs aktivieren?</Name>
+					<Description>Zeigt Speicherbedarf in MB an</Description>
+					<ValueName>jtl_debug_show_mem_usage</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="18" conf="Y">
+					<Name>Anzeige von phpinfo() aktivieren?</Name>
+					<Description>Zeigt Informationen über PHP an</Description>
+					<ValueName>jtl_debug_show_php_info</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="19" conf="Y">
+					<Name>Anzeige von Cache-Informationen aktivieren?</Name>
+					<Description>Zeigt Informationen über den JTLCache an</Description>
+					<ValueName>jtl_debug_show_cache</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="20" conf="Y">
+					<Name>Anzeige des NiceDB-Profilers aktivieren?</Name>
+					<Description>Zeigt Informationen über Datenbankqueries an (Achtung: nicht PROFILE_QUERIES_ECHO auf TRUE setzen!)</Description>
+					<ValueName>jtl_debug_show_nicedb_profiler</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="21" conf="Y">
+					<Name>Anzeige des Plugin-Profilers aktivieren?</Name>
+					<Description>Zeigt Informationen über ausgeführte Hooks an (Achtung: Ausgabe kann unvollständig sein)</Description>
+					<ValueName>jtl_debug_show_plugin_profiler</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="22" conf="Y">
+					<Name>Alle verfügbaren Smarty-Variablen in HTML-Body von Mails anhängen?</Name>
+					<Description>Zeigt alle verfügbaren Smarty-Variablen im HTML-Emails an</Description>
+					<ValueName>jtl_debug_show_mail_smarty_vars_html</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="N" sort="23" conf="Y">
+					<Name>Alle verfügbaren Smarty-Variablen in Text-Body von Mails anhängen?</Name>
+					<Description>Zeigt alle verfügbaren Smarty-Variablen im Text-Emails an</Description>
+					<ValueName>jtl_debug_show_mail_smarty_vars_text</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+			</Settingslink>
+			<Customlink sort="2">
+				<Name>Hilfe</Name>
+				<Filename>help.php</Filename>
+			</Customlink>
+		</Adminmenu>
+		<CSS>
+			<file>
+				<name>jtl-debug.css</name>
+				<priority>4</priority>
+			</file>
+		</CSS>
+		<JS>
+			<file>
+				<name>jtl-debug.js</name>
+				<priority>8</priority>
+				<position>body</position>
+			</file>
+		</JS>
+	</Install>
+</jtlshop3plugin>

@@ -1,0 +1,322 @@
+/*********************************************************
+ * JTL-Shop3 Tiny stylesheet
+ * 
+ * $Id: base.css 986 2010-08-04 10:39:31Z andy $
+ *  
+ *********************************************************/
+
+html {
+    font: normal 0.75em/1.3 Verdana, Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+body, html {
+    height: 100%;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, 
+pre, form, fieldset, label, input, button, textarea, select, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    padding: 0;
+    margin : 0 0 0.35em 0;
+}
+
+h1 {
+    margin : 0 0 0.5em 0;
+    font : 2em "Trebuchet MS", sans-serif;
+    color : #333;
+}
+
+h2 {
+    font : 1.6em "Trebuchet MS", sans-serif;
+}
+
+h3 {
+    margin-top: 1.5em;
+    font-size : 1.1em;
+}
+
+strong,
+h3, h4, h5, h6 {
+    font-weight : bold;
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+fieldset {
+    border: 0;
+}
+
+fieldset legend {
+    font-weight: bold;
+}
+
+img {
+    border: 0;
+}
+
+/* 
+ *  google chrome input border glow
+*/
+*:focus, a, textarea, input, select {
+    outline: none;
+}
+
+/*
+ *  firefox dotted links
+*/
+* {
+    -moz-outline-style: none;
+}
+
+*::-moz-focus-inner {
+    border: none;
+}
+
+/*
+ *  format
+*/
+.inline_block {
+    display: inline-block !important;
+}
+
+.no_overflow {
+    overflow: hidden;
+}
+
+.left {
+    float :left !important;
+}
+
+.right {
+    float: right !important;
+}
+
+.clear {
+    clear: both;
+}
+
+.tcenter {
+    text-align: center;
+}
+
+.floatforms form {
+    display: inline-block;
+}
+
+.tleft {
+    text-align: left;
+}
+
+.tright {
+    text-align: right;
+}
+
+.nospacing {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.vmiddle {
+    vertical-align: middle;
+}
+
+.noborder {
+    border: 0 !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+/*
+ *  horizontal list
+*/
+ul.hlist {
+    width: 100%;
+    overflow: hidden;
+}
+
+ul.hlist li {
+    float: left;
+    display: block;
+}
+
+ul.thead {
+    border-bottom: 1px solid #ccc;
+}
+
+/*
+ *  vertical list
+*/
+ul.vlist {
+    width: 100%;
+    overflow: hidden;
+}
+
+ul.vlist li {
+    float: none;
+    display: block;
+}
+
+/*
+ *  percent widths
+*/
+.p10 {
+    width: 10%;
+}
+
+.p15 {
+    width: 15%;
+}
+
+.p20 {
+    width: 20%;
+}
+
+.p25 {
+    width: 25%;
+}
+
+.p33 {
+    width: 33.333333333333333%;
+    w\idth: 33%;
+}
+
+.p50 {
+    width: 49.99%;
+}
+
+.p66 {
+    width: 66%;
+}
+
+.p75 {
+    width: 75%;
+}
+
+.p80 {
+    width: 80%;
+}
+
+.p99 {
+    width: 99%;
+}
+
+.p100 {
+    width: 100%;
+}
+
+.cl {
+    margin: 0 5px 0 0;
+}
+
+.cc {
+    margin: 0 5px;
+}
+
+.cr {
+    margin: 0 0 0 5px;
+}
+
+.vmiddle {
+    vertical-align: middle;
+}
+
+.clearall:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearall {
+    display: inline-block;
+}
+
+html .clearall {
+    height: 1%;
+}
+
+.clearall {
+    display:block;
+}
+
+/*
+ *  table
+*/
+table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+table th,
+table td {
+    padding: 2px;
+    border: 0;
+    /* vertical-align: middle; */
+}
+
+table tfoot th {
+    border: 0;
+}
+
+/*form#slider div.select_container {
+    margin-left:655px;
+}*/
+
+.layout-fluid > li {
+    width: 130px; 
+    height: 130px; 
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: block; 
+}
+
+.layout-fluid > li > a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-align: center;
+    vertical-align: bottom;
+    border: 1px solid #ccc;
+    text-decoration: none;
+}
+
+.layout-fluid > li > a > span {
+    display: block;
+    margin-top: 80%;
+}
+
+
+.layout-fluid > li > a:hover, .layout-fluid > li > a:focus {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+.fluid-list > li {
+    width: 23%; 
+}
+
+#content .CodeMirror{
+	font-size: 12px;
+	min-height: 300px;
+	line-height: 1.2;
+}

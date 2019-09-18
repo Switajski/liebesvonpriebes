@@ -1,0 +1,5 @@
+INSERT INTO `xplugin_jtl_google_shopping_attribut` (`kVaterAttribut`, `kStandardVaterAttribut`, `cGoogleName`, `cStandardGoogleName`, `cWertName`, `cStandardWertName`, `eWertHerkunft`, `eStandardWertHerkunft`, `bStandard`, `bAktiv`)
+  VALUES (0, 0, 'g:sale_price', 'g:sale_price', 'salePrice', 'salePrice', 'ArtikelEigenschaft', 'ArtikelEigenschaft', 1, 1),
+         (0, 0, 'g:sale_price_effective_date', 'g:sale_price_effective_date', 'salePriceEffectiveDate', 'salePriceEffectiveDate', 'ArtikelEigenschaft', 'ArtikelEigenschaft', 1, 1),
+         (0, 0, 'g:unit_pricing_measure', 'g:unit_pricing_measure', 'unitPricingMeasure', 'unitPricingMeasure', 'ArtikelEigenschaft', 'ArtikelEigenschaft', 1, 1),
+         (0, 0, 'g:unit_pricing_base_measure', 'g:unit_pricing_base_measure', 'unitPricingBaseMeasure', 'unitPricingBaseMeasure', 'ArtikelEigenschaft', 'ArtikelEigenschaft', 1, 1);

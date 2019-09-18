@@ -1,0 +1,195 @@
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "../../base/less/base";
+@import "variables";
+
+// Spacelab 3.3.2
+// Bootswatch
+// -----------------------------------------------------
+
+//import via CDN
+//@import url("//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700");
+//import local files
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'), url('@{icon-font-path}opensans/OpenSans-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url('@{icon-font-path}opensans/OpenSans-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans-Regular'), url('@{icon-font-path}opensans/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('@{icon-font-path}opensans/OpenSans-Bold.ttf') format('truetype');
+}
+
+.btn-shadow(@color) {
+  #gradient > .vertical-three-colors(lighten(@color, 15%), @color, 50%, darken(@color, 4%));
+  filter: none;
+  border: 1px solid darken(@color, 10%);
+}
+
+// Navbar =====================================================================
+
+.navbar {
+
+  .btn-shadow(@navbar-default-bg);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  &-inverse {
+    .btn-shadow(@navbar-inverse-bg);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+
+    .badge {
+      background-color: #fff;
+      color: @navbar-inverse-bg;
+    }
+  }
+
+  .badge {
+    text-shadow: none;
+  }
+
+  &-nav > li > a,
+  &-nav > li > a:hover {
+    padding-top: (@navbar-padding-vertical + 2px);
+    padding-bottom: (@navbar-padding-vertical - 2px);
+    .transition(color ease-in-out .2s);
+  }
+  
+  &-brand,
+  &-brand:hover {
+    .transition(color ease-in-out .2s);
+  }
+
+  .caret,
+  .caret:hover {
+    .transition(border-color ease-in-out .2s);
+  }
+
+  .dropdown-menu {
+    text-shadow: none;
+  }
+}
+
+// Buttons ====================================================================
+
+.btn {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+
+  &-default {
+    .btn-shadow(@btn-default-bg);
+
+    &:hover {
+      .btn-shadow(darken(@btn-default-bg, 4%));
+    }
+  }
+
+  &-primary {
+    .btn-shadow(@btn-primary-bg);
+
+    &:hover {
+      .btn-shadow(darken(@btn-primary-bg, 4%));
+    }
+  }
+
+  &-success {
+    .btn-shadow(@btn-success-bg);
+
+    &:hover {
+      .btn-shadow(darken(@btn-success-bg, 4%));
+    }
+  }
+
+  &-info {
+    .btn-shadow(@btn-info-bg);
+
+    &:hover {
+      .btn-shadow(darken(@btn-info-bg, 4%));
+    }
+  }
+
+  &-warning {
+    .btn-shadow(@btn-warning-bg);
+
+    &:hover {
+      .btn-shadow(darken(@btn-warning-bg, 4%));
+    }
+  }
+
+  &-danger {
+    .btn-shadow(@btn-danger-bg);
+
+    &:hover {
+      .btn-shadow(darken(@btn-danger-bg, 4%));
+    }
+  }
+
+  &:active,
+  &.active {
+    background-image: none;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+}
+
+// Typography =================================================================
+
+// Tables =====================================================================
+
+// Forms ======================================================================
+
+// Navs =======================================================================
+
+// Indicators =================================================================
+
+// Progress bars ==============================================================
+
+// Containers =================================================================
+
+.panel {
+
+  &-primary {
+    .panel-title {
+      color: #fff;
+    }
+  }
+}
+
+//
+// Footer
+// --------------------------------------------------
+
+// Padding fix
+.navbar-default .nav > li > a,
+.navbar-inverse .nav > li > a {
+  padding: 21px 15px;
+}
+
+
+#footer {
+    > .container-block, &.container-block {
+       background-color: @gray-darker;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+            color: #fff;
+        }
+    }   
+}
+
+#footer .panel > div > h5,
+#footer .panel .panel-title {
+        border-bottom: 1px dotted #fff;
+    }

@@ -1,0 +1,1 @@
+INSERT INTO `tplugineinstellungen`(`kPlugin`, `cName`, `cWert`) VALUES ((SELECT kPlugin FROM tplugin WHERE cPluginID = "jtl_search" LIMIT 1), "jtlsearch_branding","1");

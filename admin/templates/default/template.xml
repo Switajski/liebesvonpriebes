@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='yes'?>
+<Template>
+	<Name>JTL-Shop3 Default Admin</Name>
+	<Author>JTL-Software GmbH</Author>
+	<URL>http://www.jtl-software.de</URL>
+	<Version>4.00</Version>
+	<ShopVersion>320</ShopVersion>
+	<Preview>preview.png</Preview>
+	<Settings>
+		<Section Name="Allgemein" Key="general">
+			<Setting Description="Test?" Key="test" Type="select" Value="N">
+				<Option Value="N">Nein</Option>
+				<Option Value="Y">Ja</Option>
+			</Setting>
+			<Setting Description="Komprimierung von Javascript und Stylesheets" Key="use_minify" Type="select" Value="N">
+				<Option Value="Y">Ja</Option>
+				<Option Value="N">Nein</Option>
+			</Setting>
+		</Section>
+		<Section Name="Theme" Key="theme">
+			<Setting Description="Standard-Theme" Key="theme_default" Type="select" Value="/">
+				<Option Value="/">Tiny</Option>
+				<Option Value="responsive">Responsive</Option>
+				<Option Value="custom">Benutzerdefiniert</Option>
+			</Setting>
+		</Section>
+	</Settings>
+	<Minify>
+		<CSS Name="admin_css">
+			<File Path="css/jquery-ui-1.11.2.min.css"/>
+			<File Path="css/base.css"/>
+			<File Path="css/layout.css"/>
+			<File Path="css/widgets.css"/>
+			<File Path="css/menu.css"/>
+			<File Path="css/colorpicker.css"/>
+			<File Path="css/jtlshop2_admin_default.css"/>
+		</CSS>
+		<JS Name="admin_js">
+			<File Path="js/jquery-1.11.1.min.js"/>
+			<File Path="js/jquery-ui-1.11.2.min.js"/>
+			<File Path="js/colorpicker.js"/>
+			<File Path="js/jquery.ui.datepicker-de.js"/>
+			<File Path="js/jquery.tooltip.js"/>
+			<File Path="js/jquery-ui-timepicker-addon.js"/>
+			<File Path="js/highcharts.min.js"/>
+			<File Path="js/global.js"/>
+			<File Path="js/tab.js"/>
+			<File Path="js/versandart_bruttonetto.js"/>
+		</JS>
+	</Minify>
+</Template>

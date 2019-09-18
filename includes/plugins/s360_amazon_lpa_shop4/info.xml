@@ -1,0 +1,1309 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+    <Name>Amazon Pay</Name>
+    <Description>
+        Ermöglicht Login und Bezahlung via Amazon im JTL-Shop.
+    </Description>
+    <Author>Solution 360 GmbH</Author>
+    <URL>http://www.solution360.de</URL>
+    <XMLVersion>100</XMLVersion>
+    <Shop4Version>400</Shop4Version>
+    <PluginID>s360_amazon_lpa_shop4</PluginID>
+    <Install>
+        <Version nr="100">
+            <SQL>sql.sql</SQL>
+            <CreateDate>2016-01-01</CreateDate>
+        </Version>
+        <Version nr="101">
+            <CreateDate>2016-03-10</CreateDate>
+        </Version>
+        <Version nr="102">
+            <CreateDate>2016-04-01</CreateDate>
+        </Version>
+        <Version nr="103">
+            <CreateDate>2016-06-01</CreateDate>
+        </Version>
+        <Version nr="104">
+            <CreateDate>2016-06-28</CreateDate>
+        </Version>
+        <Version nr="105">
+            <CreateDate>2016-07-20</CreateDate>
+        </Version>
+        <Version nr="106">
+            <CreateDate>2017-02-15</CreateDate>
+        </Version>
+        <Version nr="107">
+            <CreateDate>2017-02-24</CreateDate>
+        </Version>
+        <Version nr="108">
+            <CreateDate>2017-06-10</CreateDate>
+        </Version>
+        <Version nr="109">
+            <CreateDate>2017-08-21</CreateDate>
+        </Version>
+        <Version nr="110">
+            <CreateDate>2017-12-04</CreateDate>
+        </Version>
+        <Version nr="111">
+            <CreateDate>2018-02-28</CreateDate>
+        </Version>
+        <Version nr="112">
+            <CreateDate>2018-03-26</CreateDate>
+        </Version>
+        <Version nr="113">
+            <CreateDate>2018-06-04</CreateDate>
+        </Version>
+        <Version nr="114">
+            <CreateDate>2018-07-13</CreateDate>
+        </Version>
+        <Version nr="115">
+            <CreateDate>2018-10-30</CreateDate>
+        </Version>
+        <Version nr="116">
+            <CreateDate>2018-12-19</CreateDate>
+        </Version>
+        <Version nr="117">
+            <CreateDate>2019-02-06</CreateDate>
+        </Version>
+        <Version nr="118">
+            <CreateDate>2019-05-16</CreateDate>
+        </Version>
+        <Hooks>
+            <Hook id="26">26_delete_customer_account.php</Hook>
+            <Hook id="52">52_display_basket_page.php</Hook>
+            <Hook id="134">134_cron_trigger.php</Hook>
+            <Hook id="140">140_pq_include_scripts.php</Hook>
+            <Hook id="182">182_pq_include_mobile_scripts.php</Hook>
+            <Hook id="159">159_sync_orders.php</Hook>
+            <Hook id="210">210_handle_storno.php</Hook>
+            <Hook id="213">213_io_handle_request.php</Hook>
+        </Hooks>
+        <JS>
+            <file>
+                <name>lpa-utils.js</name>
+                <position>body</position>
+            </file>
+        </JS>
+        <Adminmenu>
+            
+            <Settingslink sort="3">
+                <Name>Einstellungen Allgemein</Name>
+
+                <!-- Allgemeine Einstellungen -->
+                <Setting type="text" initialValue="" sort="0" conf="N">
+                    <Name>Allgemein</Name>
+                    <Description />
+                    <ValueName>lpa_title_general</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="1" sort="1" conf="Y">
+                    <Name>Plugin aktivieren</Name>
+                    <Description>Schaltet das komplette Plugin ein/aus</Description>
+                    <ValueName>lpa_general_active</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="0">aus</Option>
+                        <Option value="1" sort="1">ein</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="lp" sort="2" conf="Y">
+                    <Name>Plugin-Modus</Name>
+                    <Description>In welchem Modus soll das Plugin laufen?</Description>
+                    <ValueName>lpa_general_mode</ValueName>
+                    <SelectboxOptions>
+                        <Option value="lp" sort="0">Login and Pay</Option>
+                        <Option value="p" sort="1">Pay only</Option>
+                        <Option value="l" sort="2">Login only</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="1" sort="4" conf="Y">
+                    <Name>Hidden-Button-Modus</Name>
+                    <Description>Schaltet den Hidden-Button-Modus ein/aus. Wenn er an ist, funktioniert das Plugin prinzipiell normal, aber die Buttons werden nirgendwo im Shop angezeigt. Um Buttons trotzdem zu zeigen, muss die Seite mit dem Paramter ?lpa-show aufgerufen werden.</Description>
+                    <ValueName>lpa_general_hiddenbuttons_active</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="0">aus</Option>
+                        <Option value="1" sort="1">ein</Option>
+                    </SelectboxOptions>
+                </Setting>
+
+                <!-- Einstellungen zum Checkout -->
+                <Setting type="text" initialValue="" sort="10" conf="N">
+                    <Name>Checkout-Einstellungen</Name>
+                    <Description />
+                    <ValueName>lpa_title_login</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="0" sort="12" conf="Y">
+                    <Name>Packstation-Lieferadressen verbieten</Name>
+                    <Description>Verhindert, dass der Kunde eine Packstation als Lieferadresse angeben kann.</Description>
+                    <ValueName>lpa_login_exclude_packstation</ValueName>
+                    <SelectboxOptions>
+                        <Option value="0" sort="0">nein</Option>
+                        <Option value="1" sort="1">ja</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="Y" sort="13" conf="Y">
+                    <Name>Kundenkonto anlegen</Name>
+                    <Description>Soll bei nicht existierenden Kunden ein Kundenkonto angelegt werden?</Description>
+                    <ValueName>lpa_checkout_create_mode</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="0">ja</Option>
+                        <Option value="O" sort="1">optional (Kunde entscheidet)</Option>
+                        <Option value="N" sort="2">nein</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="G" sort="14" conf="Y">
+                    <Name>Kundenkonto Passwort generieren</Name>
+                    <Description>Wenn ein Kundenkonto angelegt wird, soll der Kunde nach dem Passwort gefragt werden oder automatisch ein sicheres Passwort generiert werden?</Description>
+                    <ValueName>lpa_checkout_create_password_mode</ValueName>
+                    <SelectboxOptions>
+                        <Option value="G" sort="0">generieren</Option>
+                        <Option value="A" sort="1">Kunde fragen</Option>
+                    </SelectboxOptions>
+                </Setting>
+
+                <!-- Pay-Button -->
+                <Setting type="text" initialValue="" sort="30" conf="N">
+                    <Name>Darstellung Pay-Button Warenkorb/Checkout</Name>
+                    <Description />
+                    <ValueName>lpa_title_template_pay</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="PwA" sort="31" conf="Y">
+                    <Name>Pay-Button-Typ</Name>
+                    <Description>Welcher Typ des Pay-Button soll angezeigt werden?</Description>
+                    <ValueName>lpa_template_pay_type</ValueName>
+                    <SelectboxOptions>
+                        <Option value="PwA" sort="0">"Pay with Amazon"</Option>
+                        <Option value="Pay" sort="1">"Pay"</Option>
+                        <Option value="A" sort="2">nur Amazon-Logo</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="medium" sort="32" conf="Y">
+                    <Name>Pay-Button-Größe</Name>
+                    <Description>Welche Größe soll der Pay-Button haben?</Description>
+                    <ValueName>lpa_template_pay_size</ValueName>
+                    <SelectboxOptions>
+                        <Option value="small" sort="0">klein</Option>
+                        <Option value="medium" sort="1">mittel</Option>
+                        <Option value="large" sort="2">groß</Option>
+                        <Option value="x-large" sort="3">sehr groß</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="Gold" sort="33" conf="Y">
+                    <Name>Pay-Button-Farbe</Name>
+                    <Description>Welche Farbe soll der Pay-Button haben?</Description>
+                    <ValueName>lpa_template_pay_color</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Gold" sort="0">Gold</Option>
+                        <Option value="DarkGray" sort="1">Dunkelgrau</Option>
+                        <Option value="LightGray" sort="2">Hellgrau</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue=".basket-well .proceed" sort="34" conf="Y">
+                    <Name>Pay-Button-Selektoren</Name>
+                    <Description>An welchen CSS-Selektoren soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_insert_selectors</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="append" sort="35" conf="Y">
+                    <Name>Pay-Button-Einfügemethode</Name>
+                    <Description>Mit welcher CSS-Methode soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_insert_method</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue=".basket-well .proceed" sort="36" conf="Y">
+                    <Name>Pay-Button-Selektoren (Mobile-Template)</Name>
+                    <Description>An welchen CSS-Selektoren soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_insert_selectors_mobile</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="append" sort="37" conf="Y">
+                    <Name>Pay-Button-Einfügemethode (Mobile-Template)</Name>
+                    <Description>Mit welcher CSS-Methode soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_insert_method_mobile</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="4" sort="38" conf="Y">
+                    <Name>Pay-Button während Checkout</Name>
+                    <Description>Bei welchen Schritten im normalen Checkout soll der Pay-Button mit Infobox angezeigt werden, um in den Amazon Checkout wechseln zu können.</Description>
+                    <ValueName>lpa_template_pay_during_checkout</ValueName>
+                    <SelectboxOptions>
+                        <Option value="124" sort="0">Rechungsadresse/Lieferadresse und Zahlungsartauswahl</Option>
+                        <Option value="12" sort="1">nur Rechungsadresse/Lieferadresse</Option>
+                        <Option value="4" sort="2">nur Zahlungsartauswahl</Option>
+                        <Option value="0" sort="3">nirgends</Option>
+                        <Option value="1234" sort="4">überall (außer Bestätigungsseite)</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="#content #result-wrapper" sort="39" conf="Y">
+                    <Name>Pay-Button während Checkout-Selektoren</Name>
+                    <Description>An welchen CSS-Selektoren im normalen Checkout soll der Pay-Button mit Infobox eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_during_checkout_insert_selectors</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="after" sort="40" conf="Y">
+                    <Name>Pay-Button während Checkout-Einfügemethode</Name>
+                    <Description>Mit welcher CSS-Methode soll der Pay-Button mit Infobox im normalen Checkout eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_during_checkout_insert_method</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="4" sort="41" conf="Y">
+                    <Name>Pay-Button während Checkout (Mobile-Template)</Name>
+                    <Description>Bei welchen Schritten im normalen Checkout soll der Pay-Button mit Infobox angezeigt werden, um in den Amazon Checkout wechseln zu können.</Description>
+                    <ValueName>lpa_template_pay_during_checkout_mobile</ValueName>
+                    <SelectboxOptions>
+                        <Option value="124" sort="0">Rechungsadresse/Lieferadresse und Zahlungsartauswahl</Option>
+                        <Option value="12" sort="1">nur Rechungsadresse/Lieferadresse</Option>
+                        <Option value="4" sort="2">nur Zahlungsartauswahl</Option>
+                        <Option value="0" sort="3">nirgends</Option>
+                        <Option value="1234" sort="4">überall (außer Bestätigungsseite)</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="#content #result-wrapper" sort="42" conf="Y">
+                    <Name>Pay-Button während Checkout-Selektoren (Mobile-Template)</Name>
+                    <Description>An welchen CSS-Selektoren im normalen Checkout soll der Pay-Button mit Infobox eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_during_checkout_insert_selectors_mobile</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="after" sort="43" conf="Y">
+                    <Name>Pay-Button während Checkout-Einfügemethode (Mobile-Template)</Name>
+                    <Description>Mit welcher CSS-Methode soll der Pay-Button mit Infobox im normalen Checkout eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_during_checkout_insert_method_mobile</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+
+                <!-- "Express" Button auf Detailseite -->
+                <Setting type="text" initialValue="" sort="59" conf="N">
+                    <Name>Darstellung Pay-Button Artikeldetailseite</Name>
+                    <Description />
+                    <ValueName>lpa_title_template_pay_express</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="Y" sort="60" conf="Y">
+                    <Name>Pay-Button auf Detailseite nutzen?</Name>
+                    <Description>Soll der Amazon Pay-Button auf Artikeldetailseiten angezeigt werden?</Description>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="1">ja</Option>
+                        <Option value="N" sort="2">nein</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_template_pay_express_enabled</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="PwA" sort="61" conf="Y">
+                    <Name>Pay-Button-Typ</Name>
+                    <Description>Welcher Typ des Pay-Button soll angezeigt werden?</Description>
+                    <ValueName>lpa_template_pay_express_type</ValueName>
+                    <SelectboxOptions>
+                        <Option value="PwA" sort="0">"Pay with Amazon"</Option>
+                        <Option value="Pay" sort="1">"Pay"</Option>
+                        <Option value="A" sort="2">nur Amazon-Logo</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="medium" sort="62" conf="Y">
+                    <Name>Pay-Button-Größe</Name>
+                    <Description>Welche Größe soll der Pay-Button haben?</Description>
+                    <ValueName>lpa_template_pay_express_size</ValueName>
+                    <SelectboxOptions>
+                        <Option value="small" sort="0">klein</Option>
+                        <Option value="medium" sort="1">mittel</Option>
+                        <Option value="large" sort="2">groß</Option>
+                        <Option value="x-large" sort="3">sehr groß</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="Gold" sort="63" conf="Y">
+                    <Name>Pay-Button-Farbe</Name>
+                    <Description>Welche Farbe soll der Pay-Button haben?</Description>
+                    <ValueName>lpa_template_pay_express_color</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Gold" sort="0">Gold</Option>
+                        <Option value="DarkGray" sort="1">Dunkelgrau</Option>
+                        <Option value="LightGray" sort="2">Hellgrau</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <!-- Initial selectors are identical to PP Express by JTL -->
+                <Setting type="text" initialValue="#add-to-cart .form-inline" sort="64" conf="Y">
+                    <Name>Pay-Button-Selektoren</Name>
+                    <Description>An welchen CSS-Selektoren soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_express_insert_selectors</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="append" sort="65" conf="Y">
+                    <Name>Pay-Button-Einfügemethode</Name>
+                    <Description>Mit welcher CSS-Methode soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_express_insert_method</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="#add-to-cart .form-inline" sort="66" conf="Y">
+                    <Name>Pay-Button-Selektoren (Mobile-Template)</Name>
+                    <Description>An welchen CSS-Selektoren soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_express_insert_selectors_mobile</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="append" sort="67" conf="Y">
+                    <Name>Pay-Button-Einfügemethode (Mobile-Template)</Name>
+                    <Description>Mit welcher CSS-Methode soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_express_insert_method_mobile</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+
+
+                <!-- Express-Button Kategorieseite -->
+                <Setting type="text" initialValue="" sort="70" conf="N">
+                    <Name>Darstellung Pay-Button Kategorieseite</Name>
+                    <Description />
+                    <ValueName>lpa_title_template_pay_express_listing</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="Y" sort="71" conf="Y">
+                    <Name>Pay-Button auf Kategorieseiten nutzen?</Name>
+                    <Description>Soll der Amazon Pay-Button auf Kategorieseiten angezeigt werden?</Description>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="1">ja</Option>
+                        <Option value="N" sort="2">nein</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_template_pay_express_listing_enabled</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="PwA" sort="72" conf="Y">
+                    <Name>Pay-Button-Typ</Name>
+                    <Description>Welcher Typ des Pay-Button soll angezeigt werden?</Description>
+                    <ValueName>lpa_template_pay_express_listing_type</ValueName>
+                    <SelectboxOptions>
+                        <Option value="PwA" sort="0">"Pay with Amazon"</Option>
+                        <Option value="Pay" sort="1">"Pay"</Option>
+                        <Option value="A" sort="2">nur Amazon-Logo</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="small" sort="73" conf="Y">
+                    <Name>Pay-Button-Größe</Name>
+                    <Description>Welche Größe soll der Pay-Button haben?</Description>
+                    <ValueName>lpa_template_pay_express_listing_size</ValueName>
+                    <SelectboxOptions>
+                        <Option value="small" sort="0">klein</Option>
+                        <Option value="medium" sort="1">mittel</Option>
+                        <Option value="large" sort="2">groß</Option>
+                        <Option value="x-large" sort="3">sehr groß</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="Gold" sort="74" conf="Y">
+                    <Name>Pay-Button-Farbe</Name>
+                    <Description>Welche Farbe soll der Pay-Button haben?</Description>
+                    <ValueName>lpa_template_pay_express_listing_color</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Gold" sort="0">Gold</Option>
+                        <Option value="DarkGray" sort="1">Dunkelgrau</Option>
+                        <Option value="LightGray" sort="2">Hellgrau</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <!-- Initial selectors are identical to PP Express by JTL -->
+                <Setting type="text" initialValue="#result-wrapper_buy_form_#kArtikel# .expandable" sort="75" conf="Y">
+                    <Name>Pay-Button-Selektoren</Name>
+                    <Description>An welchen CSS-Selektoren soll der Pay-Button eingefügt werden? #kArtikel# wird durch den Artikelkey ersetzt. Bitte nicht entfernen!</Description>
+                    <ValueName>lpa_template_pay_express_listing_insert_selectors</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="append" sort="76" conf="Y">
+                    <Name>Pay-Button-Einfügemethode</Name>
+                    <Description>Mit welcher CSS-Methode soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_express_listing_insert_method</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="#result-wrapper_buy_form_#kArtikel# .expandable" sort="77" conf="Y">
+                    <Name>Pay-Button-Selektoren (Mobile-Template)</Name>
+                    <Description>An welchen CSS-Selektoren soll der Pay-Button eingefügt werden? #kArtikel# wird durch den Artikelkey ersetzt. Bitte nicht entfernen!</Description>
+                    <ValueName>lpa_template_pay_express_listing_insert_selectors_mobile</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="append" sort="78" conf="Y">
+                    <Name>Pay-Button-Einfügemethode (Mobile-Template)</Name>
+                    <Description>Mit welcher CSS-Methode soll der Pay-Button eingefügt werden?</Description>
+                    <ValueName>lpa_template_pay_express_listing_insert_method_mobile</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+
+
+                <!-- Login-Button Design -->
+                <Setting type="text" initialValue="" sort="144" conf="N">
+                    <Name>Darstellung Login-Button</Name>
+                    <Description />
+                    <ValueName>lpa_title_template_login</ValueName>
+                </Setting>
+                
+                <Setting type="selectbox" initialValue="LwA" sort="145" conf="Y">
+                    <Name>Login-Button-Typ</Name>
+                    <Description>Welcher Typ des Login-Button soll angezeigt werden?</Description>
+                    <ValueName>lpa_template_login_type</ValueName>
+                    <SelectboxOptions>
+                        <Option value="LwA" sort="0">"Login with Amazon"</Option>
+                        <Option value="Login" sort="1">"Login"</Option>
+                        <Option value="A" sort="2">nur Amazon-Logo</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="small" sort="146" conf="Y">
+                    <Name>Login-Button-Größe</Name>
+                    <Description>Welche Größe soll der Login-Button haben?</Description>
+                    <ValueName>lpa_template_login_size</ValueName>
+                    <SelectboxOptions>
+                        <Option value="small" sort="0">klein</Option>
+                        <Option value="medium" sort="1">mittel</Option>
+                        <Option value="large" sort="2">groß</Option>
+                        <Option value="x-large" sort="3">sehr groß</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="selectbox" initialValue="Gold" sort="147" conf="Y">
+                    <Name>Login-Button-Farbe</Name>
+                    <Description>Welche Farbe soll der Login-Button haben?</Description>
+                    <ValueName>lpa_template_login_color</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Gold" sort="0">Gold</Option>
+                        <Option value="DarkGray" sort="1">Dunkelgrau</Option>
+                        <Option value="LightGray" sort="2">Hellgrau</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="#quick-login, #login_form, fieldset.quick_login" sort="148" conf="Y">
+                    <Name>Login-Button-Selektoren</Name>
+                    <Description>An welchen CSS-Selektoren soll der Login-Button eingefügt werden? Wenn dieser Wert leer gelassen wird, nutzt das Plugin eine eigene, spezielle Logik.</Description>
+                    <ValueName>lpa_template_login_insert_selectors</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="append" sort="149" conf="Y">
+                    <Name>Login-Button-Einfügemethode</Name>
+                    <Description>Mit welcher CSS-Methode soll der Login-Button eingefügt werden? Diese Einstellung hat nur Auswirkung, wenn ein Selektor gesetzt ist.</Description>
+                    <ValueName>lpa_template_login_insert_method</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="" sort="150" conf="Y">
+                    <Name>Login-Button-Selektoren (Mobile-Template)</Name>
+                    <Description>An welchen CSS-Selektoren soll der Login-Button eingefügt werden? Wenn dieser Wert leer gelassen wird, nutzt das Plugin eine eigene, spezielle Logik.</Description>
+                    <ValueName>lpa_template_login_insert_selectors_mobile</ValueName>
+                </Setting>
+                <Setting type="selectbox" initialValue="append" sort="151" conf="Y">
+                    <Name>Login-Button-Einfügemethode (Mobile-Template)</Name>
+                    <Description>Mit welcher CSS-Methode soll der Login-Button eingefügt werden? Diese Einstellung hat nur Auswirkung, wenn ein Selektor gesetzt ist.</Description>
+                    <ValueName>lpa_template_login_insert_method_mobile</ValueName>
+                    <SelectboxOptions>
+                        <Option value="prepend" sort="0">Vorhängen (Prepend)</Option>
+                        <Option value="append" sort="1">Anhängen (Append)</Option>
+                        <Option value="before" sort="2">Vorstellen (Before)</Option>
+                        <Option value="after" sort="3">Anstellen (After)</Option>
+                        <Option value="replaceWith" sort="4">Ersetzen (Replace)</Option>
+                    </SelectboxOptions>
+                </Setting>
+
+
+
+                <!-- Fortgeschrittene Einstellungen -->
+                <Setting type="text" sort="260" conf="N">
+                    <Name>Erweiterte Einstellungen</Name>
+                    <Description />
+                    <ValueName>lpa_title_advanced</ValueName>
+                </Setting>
+
+                <Setting type="selectbox" initialValue="omni" sort="261" conf="Y">
+                    <Name>Autorisierungsmodus</Name>
+                    <Description>Wann werden Zahlungen autorisiert? Optimiert: versucht erst synchron - bei Timeout asynchron, synchron: sofort beim Kauf vor Anlage der Bestellung, asynchron: / manuell: veraltete Optionen, bitte nicht mehr nutzen</Description>
+                    <SelectboxOptions>
+                        <Option value="omni" sort="0">optimiert</Option>
+                        <Option value="sync" sort="1">synchron</Option>
+                        <Option value="async" sort="2">asynchron (veraltet, entspricht optimiert)</Option>
+                        <Option value="manual" sort="3">manuell (veraltet, entspricht optimiert)</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_authmode</ValueName>
+                </Setting>
+
+                <Setting type="selectbox" initialValue="shipment" sort="262" conf="Y">
+                    <Name>Capturemodus</Name>
+                    <Description>Wann wird der zu zahlende Betrag eingezogen? ACHTUNG: Sofortiger Einzug benötigt Freigabe durch Amazon!</Description>
+                    <SelectboxOptions>
+                        <Option value="shipment" sort="0">nach Versand</Option>
+                        <Option value="immediate" sort="1">sofort (Hinweis beachten!)</Option>
+                        <Option value="manual" sort="2">manuell</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_capturemode</ValueName>
+                </Setting>
+
+                <Setting type="selectbox" initialValue="1" sort="263" conf="Y">
+                    <Name>IPN aktivieren</Name>
+                    <Description>Soll die Instant Payment Notification von Amazon genutzt werden? Sonst erfolgt die Synchronisierung beim Webshopabgleich.</Description>
+                    <SelectboxOptions>
+                        <Option value="1" sort="0">ja</Option>
+                        <Option value="0" sort="1">nein</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_useipn</ValueName>
+                </Setting>
+
+                <Setting type="text" initialValue="3600" sort="264" conf="Y">
+                    <Name>Abfrage-Intervall ohne IPN</Name>
+                    <Description>In welchen minimalen Zeitabständen - in Sekunden - sollen Bestellungen aktualisiert werden, wenn KEIN IPN genutzt wird?</Description>
+                    <ValueName>lpa_advanced_pollinterval</ValueName>
+                </Setting>
+                
+                <Setting type="selectbox" initialValue="2" sort="265" conf="Y">
+                    <Name>Bestellstatus nach erfolgreicher Autorisierung</Name>
+                    <Description>Status, den eine Bestellung einnehmen soll, sobald die Autorisierung gegen Amazon erfolgreich war.</Description>
+                    <SelectboxOptions>
+                        <Option value="1" sort="1">Offen</Option>
+                        <Option value="2" sort="2">In Bearbeitung</Option>
+                        <Option value="3" sort="3">Bezahlt</Option>
+                        <Option value="4" sort="4">Versandt</Option>
+                        <Option value="5" sort="5">Teilversandt</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_authstate</ValueName>
+                </Setting>
+
+                <Setting type="selectbox" initialValue="4" sort="266" conf="Y">
+                    <Name>Bestellstatus nach erfolgreichem Versand</Name>
+                    <Description>Status, der für den erfolgreichen Versand steht und damit den Zahlungseinzug auslöst.</Description>
+                    <SelectboxOptions>
+                        <Option value="1" sort="1">Offen</Option>
+                        <Option value="2" sort="2">In Bearbeitung</Option>
+                        <Option value="3" sort="3">Bezahlt</Option>
+                        <Option value="4" sort="4">Versandt</Option>
+                        <Option value="5" sort="5">Teilversandt</Option>
+                        <Option value="45" sort="45">Versandt oder Teilversandt</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_capturestate</ValueName>
+                </Setting>
+
+                <Setting type="selectbox" initialValue="YM" sort="268" conf="Y">
+                    <Name>Automatische Stornierung</Name>
+                    <Description>Soll bei einer Stornierung (vor Versand/Rechnungstellung) automatisch die Order gegen Amazon Pay gecancelled werden und soll die Standard-Storno-Mail an den Kunden versendet werden? Achtung: Es ist nicht möglich, Bestellungen abzubrechen, gegen die bereits ein Zahlungseinzug ausgelöst wurde.</Description>
+                    <SelectboxOptions>
+                        <Option value="YM" sort="1">ja / Stornomail senden</Option>
+                        <Option value="YO" sort="2">ja / ohne Stornomail</Option>
+                        <Option value="NM" sort="3">nein / Stornomail senden</Option>
+                        <Option value="NO" sort="4">nein / ohne Stornomail</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_storno</ValueName>
+                </Setting>
+
+                <Setting type="selectbox" initialValue="Y" sort="269" conf="Y">
+                    <Name>Automatisches Schliessen</Name>
+                    <Description>Sollen AmazonPay-Order-Referenzen automatisch geschlossen werden, wenn die Summe der erfolgreichen Captures größer/gleich dem Order-Betrag ist? (Ansonsten schliesst AmazonPay die Bestellungen automatisch nach 180 Tagen.)</Description>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="1">ja</Option>
+                        <Option value="N" sort="2">nein</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_autoclose</ValueName>
+                </Setting>
+                
+                <Setting type="selectbox" initialValue="0" sort="270" conf="Y">
+                    <Name>Shop 3-Template Kompatibilitätsmodus</Name>
+                    <Description>Schalten Sie diese Option ein, wenn Sie ein altes Shop 3 Template verwenden.</Description>
+                    <SelectboxOptions>
+                        <Option value="0" sort="1">aus</Option>
+                        <Option value="1" sort="2">ein</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_shop3_compatibility</ValueName>
+                </Setting>
+                
+                <Setting type="text" initialValue="10" sort ="272" conf="Y">
+                    <Name>Backoff-Zeitpuffer für Backend-Operationen</Name>
+                    <Description>Welche zusätzliche Backoff-Zeit soll bei Backend-Operationen addiert werden (in Sekunden)? (Variieren Sie diese Einstellung, wenn Sie Probleme mit zuvielen gedrosselten Amazon-Operationen oder zu langem Wawi-Abgleich haben.)</Description>
+                    <ValueName>lpa_advanced_backoff_backend</ValueName>
+                </Setting>
+                
+                <Setting type="selectbox" initialValue="Amazon Pay" sort ="274" conf="Y">
+                    <Name>Zahlungsart-Name intern</Name>
+                    <Description>Welchen Namen soll die Zahlungsart intern verwenden? (Dieser Name muss mit dem in der Wawi konfigurierten Namen übereinstimmen!)</Description>
+                    <SelectboxOptions>
+                        <Option value="Amazon Payments" sort="1">Amazon Payments</Option>
+                        <Option value="Amazon Pay" sort="2">Amazon Pay</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_paymethod_name</ValueName>
+                </Setting>
+                
+                <Setting type="selectbox" initialValue="N" sort="276" conf="Y">
+                    <Name>Automatischer Account-Merge</Name>
+                    <Description>Sollen nicht-eingeloggte Shop-Accounts ohne Passwort-Abfrage zusammengeführt und eingeloggt werden?</Description>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="1">Ja (ACHTUNG: Potentielles Sicherheitsrisiko! Doku beachten!)</Option>
+                        <Option value="N" sort="2">Nein</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_automerge</ValueName>
+                </Setting>
+
+                <Setting type="selectbox" initialValue="Y" sort="277" conf="Y">
+                    <Name>Rechnungsadresse aus Amazon Pay verwenden</Name>
+                    <Description>Soll als Rechnungsadresse für den Kunden die Adresse aus dem Amazon Konto des Kunden statt der im Shop hinterlegten Adresse genutzt werden?</Description>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="1">Ja</Option>
+                        <Option value="N" sort="2">Nein</Option>
+                    </SelectboxOptions>
+                    <ValueName>lpa_advanced_use_billing_address</ValueName>
+                </Setting>
+                
+                
+            </Settingslink>
+
+            <Customlink sort="1">
+                <Name>Bestellungen</Name>
+                <Filename>order_management.php</Filename>
+            </Customlink>
+            
+            <Customlink sort="2">
+                <Name>Einstellungen Account</Name>
+                <Filename>config_account.php</Filename>
+            </Customlink>
+          
+            <Customlink sort="4">
+                <Name>Einstellungen Sonstiges</Name>
+                <Filename>config_misc.php</Filename>
+            </Customlink>
+
+            <Customlink sort="6">
+                <Name>Erweiterte Funktionen</Name>
+                <Filename>extended_functions.php</Filename>
+            </Customlink>
+
+            <Customlink sort="7">
+                <Name>Voice Commerce</Name>
+                <Filename>voicecommerce.php</Filename>
+            </Customlink>
+        </Adminmenu>
+
+        <Locales>
+            <Variable>
+                <Name>lpa_pay_with_amazon</Name>
+                <Description>Wird im Checkout als Überschrift angezeigt.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bezahlen mit Amazon]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Pay with Amazon]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_cancel_checkout</Name>
+                <Description>Text für den Abbruchlink im Amazon-Checkout.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Amazon Checkout verlassen]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Cancel Pay with Amazon]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_packstation_disallowed</Name>
+                <Description>Text, um den Kunden mitzuteilen, dass Packstation-Adressen nicht zulässig sind.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Die DHL Packstation Adresse ist hier nicht zulässig. Bitte wählen Sie eine andere Adresse aus.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[DHL Packstation addresses are not allowed in this context. Please choose a different address.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_country_disallowed</Name>
+                <Description>Text, um den Kunden mitzuteilen, dass sein ausgewähltes Land als Stammadresse nicht gültig ist.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Das ausgewählte Land wird nicht unterstützt. Bitte wählen Sie eine andere Adresse aus.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[The selected country is not supported. Please choose a different address.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_acknowledge_immediate_capture</Name>
+                <Description>Text zur Bestätigung, dass die Zahlung sofort eingezogen wird.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Ich habe zur Kenntnis genommen, dass die Zahlung sofort nach dem Absenden der Bestellung erfolgt.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[I hereby acknowledge that the payment will be captured immediately after placing the order.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_check_order</Name>
+                <Description>Text der im ersten Schritt des Amazon-Checkout angezeigt wird.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Sie können die Bestellung noch einmal prüfen.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[You can verify the order before placing it.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_tooltip</Name>
+                <Description>Tooltip, der beim Hovern über dem Amazon-Pay-Button gezeigt wird.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Mit Bezahlen über Amazon können Sie bei uns ganz einfach mit den Zahlungs- und Versandinformationen aus Ihrem Amazon-Kundenkonto bezahlen.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Amazon Pay makes shopping on our website even easier by using information in your Amazon account.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_checkout_hint</Name>
+                <Description>Text der im Standard-Bestellvorgang angezeigt wird, um Kunden auf Checkout mit Amazon hinzuweisen.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Wechseln Sie jetzt auf Bezahlen mit Amazon, um ganz einfach mit den Zahlungs- und Versandinformationen aus Ihrem Amazon-Kundenkonto zu bezahlen.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Switch to Pay with Amazon now to easily check out by using information in your Amazon account.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_check_input</Name>
+                <Description>Text der bei Falscheingaben angezeigt wird.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte korrigieren Sie Ihre Eingaben.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please check your input.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_accounts_linked</Name>
+                <Description>Text der angezeigt wird, wenn Accounts verknüpft wurden.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Ihr Shop-Account wurde erfolreich mit Ihrem Amazon-Account verknüpft.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Your shop account was successfully linked with your amazon account.]]></VariableLocalized>
+            </Variable>
+
+            <!-- Hint texts at the creation screen -->
+            <Variable>
+                <Name>lpa_create_description</Name>
+                <Description>Text über dem Accountanlage-Formular bei automatischer Accountanlage.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Amazon Pay legt f&uuml;r Sie ein Kundenkonto in diesem Shop an. Bitte w&auml;hlen Sie Ihre Rechnungs-Adresse und f&uuml;llen Sie ggf. die fehlenden Pflicht-Angaben aus, um die automatische Accounterstellung im Shop abzuschlie&szlig;en.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Amazon Pay is about to create an account for you in this shop. Please choose your billing address and fill in the additional mandatory fields to complete the automatic account creation in the shop.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_create_description_optional</Name>
+                <Description>Text über dem Accountanlage-Formular bei optionaler Accountanlage.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte w&auml;hlen Sie Ihre Rechnungs-Adresse und f&uuml;llen Sie ggf. die fehlenden Pflicht-Angaben aus. Auf Wunsch wird f&uuml;r Sie auch ein Kundenkonto im Shop erstellt.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please choose your billing address and fill in the additional mandatory fields. Optionally, you can also choose to create a shop account.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_create_description_guest</Name>
+                <Description>Text über dem Accountanlage-Formular bei deaktivierter Accountanlage</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte w&auml;hlen Sie Ihre Rechnungs-Adresse und f&uuml;llen Sie ggf. die fehlenden Pflicht-Angaben aus, um den Checkout fortzusetzen.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please choose your billing address and fill in the additional mandatory fields to proceed with the checkout.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_create_description_billing_override</Name>
+                <Description>Text über dem Accountanlage-Formular bei automatischer Accountanlage.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Amazon Pay legt f&uuml;r Sie ein Kundenkonto in diesem Shop an. Bitte w&auml;hlen Sie Ihre initiale Rechnungs-Adresse und f&uuml;llen Sie ggf. die fehlenden Pflicht-Angaben aus, um die automatische Accounterstellung im Shop abzuschlie&szlig;en. Beachten Sie bitte, dass bei einer Bezahlung mit Amazon Pay die Rechnungsadresse aus Ihrem <u>Amazon Konto</u> verwendet wird.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Amazon Pay is about to create an account for you in this shop. Please choose your initial billing address and fill in the additional mandatory fields to complete the automatic account creation in the shop. Please be aware that, when paying with Amazon Pay, the billing address from your <u>Amazon account</u> will be used.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_create_description_optional_billing_override</Name>
+                <Description>Text über dem Accountanlage-Formular bei optionaler Accountanlage.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte w&auml;hlen Sie Ihre initiale Rechnungs-Adresse und f&uuml;llen Sie ggf. die fehlenden Pflicht-Angaben aus. Auf Wunsch wird f&uuml;r Sie auch ein Kundenkonto im Shop erstellt. Beachten Sie bitte, dass bei einer Bezahlung mit Amazon Pay die Rechnungsadresse aus Ihrem <u>Amazon Konto</u> verwendet wird.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please choose your initial billing address and fill in the additional mandatory fields. Optionally, you can also choose to create a shop account. Please be aware that, when paying with Amazon Pay, the billing address from your <u>Amazon account</u> will be used.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_create_description_guest_billing_override</Name>
+                <Description>Text über dem Accountanlage-Formular bei deaktivierter Accountanlage</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte w&auml;hlen Sie Ihre initiale Rechnungs-Adresse und f&uuml;llen Sie ggf. die fehlenden Pflicht-Angaben aus, um den Checkout fortzusetzen. Beachten Sie bitte, dass bei einer Bezahlung mit Amazon Pay die Rechnungsadresse aus Ihrem <u>Amazon Konto</u> verwendet wird.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please choose your initial billing address and fill in the additional mandatory fields to proceed with the checkout. Please be aware that, when paying with Amazon Pay, the billing address from your <u>Amazon account</u> will be used.]]></VariableLocalized>
+            </Variable>
+
+            <Variable>
+                <Name>lpa_general_billing_override</Name>
+                <Description>Text mit Hinweis, dass Rechnungsadresse aus Amazon Pay verwendet wird.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Es wird die Rechnungsadresse aus Ihrem <u>Amazon Konto</u> verwendet.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[The billing address from your <u>Amazon account</u> will be used.]]></VariableLocalized>
+            </Variable>
+
+            <Variable>
+                <Name>lpa_technical_error</Name>
+                <Description>Text bei einem technischen Fehler</Description>
+                <VariableLocalized iso="GER"><![CDATA[Es ist ein technischer Fehler aufgetreten. Bitte nutzen Sie den normalen Bestellabschluss-Prozess.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[A technical error occured. Please use the normal checkout process.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_nonlatin_error</Name>
+                <Description>Text bei einer Adress-Auswahl mit nicht unterstützten Zeichen.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Die ausgewählte Adresse enthält nicht unterstützte Zeichen. Bitte wählen Sie eine andere Adresse aus dem Amazon-Adressbuch oder legen Sie mithilfe des Amazon Widgets eine neue Adresse an.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[The address you selected contains unsupported characters. Please choose a different address or add a new one using the Amazon address book widget.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_address_error</Name>
+                <Description>Text bei einer Adressauswahl, die nicht verarbeitet werden kann.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Die ausgewählte Adresse kann nicht korrekt verarbeitet werden. Bitte wählen Sie eine andere Adresse aus dem Amazon-Adressbuch oder legen Sie mithilfe des Amazon Widgets eine neue Adresse an.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[The address you selected cannot be processed. Please choose a different address or add a new one using the Amazon address book widget.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_generic_error</Name>
+                <Description>Text bei einem allgemeinen Fehler</Description>
+                <VariableLocalized iso="GER"><![CDATA[Es ist ein allgemeiner Fehler aufgetreten.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[A general error occured.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_login_success</Name>
+                <Description>Text bei erfolgreichem Login</Description>
+                <VariableLocalized iso="GER"><![CDATA[Sie wurden erfolgreich eingeloggt.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[You were logged in successfully.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_merge_reason</Name>
+                <Description>Der Erklärungstext zur Accountverlinkung.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Zu Ihrer Amazon-E-Mail-Adresse existiert bereits ein Account im Shop.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[There already exists an account in the shop with the same e-mail address as your Amazon e-mail address.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_merge_description</Name>
+                <Description>Der Hinweistext vor der Passworteingabe.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte bestätigen Sie durch Eingabe Ihres Shop-Passwortes, dass Sie der Besitzer des im Shop existierenden Accounts sind.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please verify that you are the owner of the existing shop account by entering the corresponding password.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_please_wait</Name>
+                <Description>Der Hinweistext, der während der Bestellverarbeitung im Popup gezeigt wird.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte warten...]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please wait...]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_confirmation_shipping_address</Name>
+                <Description>Fehlertext bei Bestellbestätigung, Lieferadresse muss gewählt werden</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte wählen Sie eine Lieferadresse aus!]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please choose a shipping address!]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_confirmation_payment_method</Name>
+                <Description>Fehlertext bei Bestellbestätigung, Zahlungsart muss gewählt werden</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte wählen Sie eine Zahlungsart aus!]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please choose a payment method!]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_confirmation_soft_decline</Name>
+                <Description>Fehlertext bei Bestellbestätigung, Zahlungsart muss geändert werden</Description>
+                <VariableLocalized iso="GER"><![CDATA[Die ausgewählte Zahlungsart wird von Amazon nicht erlaubt, bitte korrigieren Sie Ihre Auswahl.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Your chosen payment method was declined by Amazon. Please choose another payment method.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_confirmation_hard_decline</Name>
+                <Description>Fehlertext bei Bestellbestätigung, Bestellung kann nicht mit Amazon durchgeführt werden</Description>
+                <VariableLocalized iso="GER"><![CDATA[Ihre Bestellung kann nicht mit Amazon Pay abgeschlossen werden. Bitte kehren Sie zum Warenkorb zurück und nutzen Sie den Standard-Bestellprozess.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Your order can not be processed with Amazon Pay. Please return to the shopping cart and use the standard checkout process.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_confirmation_checkboxes</Name>
+                <Description>Fehlertext bei Bestellbestätigung, Checkboxen nicht markiert</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte beachten Sie die Pflicht-Checkboxen.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please pay attention to the required checkboxes.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_confirmation_checksum</Name>
+                <Description>Fehlertext bei Bestellbestätigung, Warenkorb-Checksum hat sich geändert</Description>
+                <VariableLocalized iso="GER"><![CDATA[Ihr Warenkorb hat sich verändert. Bitte kehren Sie über "Versandart ändern" zur Versandartauswahl zurück und versuchen Sie es erneut.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Your basket has changed. Please return to the shipping method selection and try again.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_currency_hint</Name>
+                <Description>Der Währungshinweis, wenn der Kunde in einer anderen Währung bestellt als durch Amazon abgebucht wird. Die Platzhalter (%XY%) werden dynamisch vor der Anzeige ersetzt. (VERALTET)</Description>
+                <VariableLocalized iso="GER"><![CDATA[Alle Bestellungen mit Amazon Pay werden in %LPA_CURRENCY% abgerechnet. Es werden Ihnen also %LPA_AMOUNT% %LPA_CURRENCY_SIGN% berechnet (was ungefähr %SHOP_AMOUNT% %SHOP_CURRENCY_SIGN% entspricht). Da sich die Wechselkurse ständig ändern, kann der endgültige Betrag leicht abweichen.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[All orders placed via Amazon Pay are charged in %LPA_CURRENCY%, so you will be charged %LPA_CURRENCY_SIGN%%LPA_AMOUNT% (which is about %SHOP_CURRENCY_SIGN%%SHOP_AMOUNT%). Exchange rates change all the time so the actual figure might be slightly different.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_amazon_pay_name</Name>
+                <Description>Die Bezeichnung der Zahlungsart im Frontend auf dem Amazon Pay Bestellabschluss. Sie können hier auch per HTML ein Logo einbinden.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Amazon Pay]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Amazon Pay]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_merge_otherpaymethod</Name>
+                <Description>Der Hinweistext unter dem Merge, der den Kunden zum normalen Bestellvorgang verlinkt, wenn er nicht mergen will.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Andere Zahlungsart nutzen]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Use a different paymethod]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_general_back</Name>
+                <Description>Allgemeiner Text für "Zurück"</Description>
+                <VariableLocalized iso="GER"><![CDATA[Zur&uuml;ck]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Back]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_general_next</Name>
+                <Description>Allgemeiner Text für "Weiter"</Description>
+                <VariableLocalized iso="GER"><![CDATA[Weiter]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Continue]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_not_logged_in</Name>
+                <Description>Hinweistext, wenn Kunde ohne eingeloggt zu sein in den Checkout kommt.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Sie sind momentan nicht mit Amazon Pay eingeloggt, um damit bezahlen zu k&ouml;nnen. Bitte nutzen Sie den Button unterhalb dieser Nachricht, um mit Amazon Pay zu bezahlen.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[You are currently not logged in with Amazon Pay to use it for payment. Please use the button below to pay with Amazon Pay.]]></VariableLocalized>
+            </Variable>
+
+            <Variable>
+                <Name>lpa_express_required_fields</Name>
+                <Description>Hinweistext, wenn der Kunde beim Verwenden des "Express"-Buttons nicht alle Pflichtfelder gefüllt hat.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte die Pflichtfelder ausf&uuml;llen.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please fill in the required fields.]]></VariableLocalized>
+            </Variable>
+
+            <Variable>
+                <Name>lpa_currency_hint_multicurrency</Name>
+                <Description>Der Hinweistext, wenn der Kunde eine Währung ausgesucht hat, die nicht von AmazonPay supported ist.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Die aktuell ausgew&auml;hlte W&auml;hrung kann nicht zur Zahlung mit Amazon Pay genutzt werden. Bitte w&auml;hlen Sie eine der unterst&uuml;tzten W&auml;hrungen aus.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[The currently selected currency can not be used to with Amazon Pay. Please select one of the supported currencies.]]></VariableLocalized>
+            </Variable>
+
+            <Variable>
+                <Name>lpa_processing_error_generic</Name>
+                <Description>Fehlertext bei der Verarbeitung der Bestellung.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bei der Verarbeitung Ihrer Bestellung ist ein allgemeiner Fehler aufgetreten.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[An error occured during the handling of your order.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_processing_error_order_amount</Name>
+                <Description>Fehlertext bei der Verarbeitung der Bestellung.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Der Gesamtbetrag der Bestellung hat sich w&auml;hrend der Verarbeitung ge&auml;ndert.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[The total order amount changed during the processing of the order.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_processing_error_do_not_try_again</Name>
+                <Description>Hinweistext, dass der Nutzer es nicht nochmal versuchen sollte.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Eine Zahlung mit Amazon Pay ist f&uuml;r Ihre Bestellung leider nicht m&ouml;glich. Bitte nutzen Sie eine andere Zahlungsart.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Paying with Amazon Pay is not possible for your order. Please use a different payment method.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_processing_error_try_again</Name>
+                <Description>Hinweistext, dass der Nutzer es nochmal versuchen sollte.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte versuchen Sie es erneut oder nutzen Sie eine andere Zahlungsart.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please try again or choose a different payment method.]]></VariableLocalized>
+            </Variable>
+
+            <Variable>
+                <Name>lpa_error_message_acknowledge_immediate_capture</Name>
+                <Description>Fehlermeldung, wenn Kunde den Sofort-Einzug nicht bestätigt.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte best&auml;tigen Sie, dass die Zahlung sofort bei Bestellung erfolgt.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please confirm that the payment will be executed immediately when the order is placed.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_error_message_select_delivery_address_and_method</Name>
+                <Description>Fehlermeldung, wenn Kunde keine Versandart und Lieferadresse angegeben hat.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte w&auml;hlen Sie eine g&uuml;ltige Versandart und Lieferadresse aus.]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please select a valid shipping address and shipping method.]]></VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>lpa_error_message_select_address_and_method</Name>
+                <Description>Fehlermeldung, wenn Kunde keine Versandadresse und/oder Zahlungsart angegeben hat.</Description>
+                <VariableLocalized iso="GER"><![CDATA[Bitte w&auml;hlen Sie eine Liefer-Adresse und Zahlart aus!]]></VariableLocalized>
+                <VariableLocalized iso="ENG"><![CDATA[Please select a shipping address and pay method!]]></VariableLocalized>
+            </Variable>
+        </Locales>
+
+        <FrontendLink>
+            <!-- script that is triggered on redirection from amazon login -->
+            <Link>
+                <Filename>lpa_login.php</Filename>
+                <Name>Login-and-Pay with Amazon Login</Name>
+                <Template>lpa_login.tpl</Template>
+                <VisibleAfterLogin>N</VisibleAfterLogin>
+                <PrintButton>N</PrintButton>
+                <NoFollow>Y</NoFollow>
+                <SSL>2</SSL>
+                <LinkLanguage iso="GER">
+                    <Seo>lpalogin</Seo>
+                    <Name>Login mit Amazon</Name>
+                    <Title>Login mit Amazon</Title>
+                    <MetaTitle>Login mit Amazon</MetaTitle>
+                    <MetaKeywords>Login, Amazon</MetaKeywords>
+                    <MetaDescription>Login mit Amazon</MetaDescription>
+                </LinkLanguage>
+                <LinkLanguage iso="ENG">
+                    <Seo>lpalogin-en</Seo>
+                    <Name>Login with Amazon</Name>
+                    <Title>Login with Amazon</Title>
+                    <MetaTitle>Login with Amazon</MetaTitle>
+                    <MetaKeywords>Login, Amazon</MetaKeywords>
+                    <MetaDescription>Login with Amazon</MetaDescription>
+                </LinkLanguage>
+            </Link>
+
+            <!-- script that handles the login/confirmation of account merges on amazon login -->
+            <Link>
+                <Filename>lpa_merge.php</Filename>
+                <Name>Login-and-Pay with Amazon Accountmerge</Name>
+                <Template>lpa_merge.tpl</Template>
+                <VisibleAfterLogin>N</VisibleAfterLogin>
+                <PrintButton>N</PrintButton>
+                <NoFollow>Y</NoFollow>
+                <SSL>2</SSL>
+                <LinkLanguage iso="GER">
+                    <Seo>lpamerge</Seo>
+                    <Name>Login mit Amazon - Accountzusammenführung</Name>
+                    <Title>Login mit Amazon</Title>
+                    <MetaTitle>Login mit Amazon</MetaTitle>
+                    <MetaKeywords>Login, Amazon</MetaKeywords>
+                    <MetaDescription>Login mit Amazon</MetaDescription>
+                </LinkLanguage>
+                <LinkLanguage iso="ENG">
+                    <Seo>lpamerge-en</Seo>
+                    <Name>Login with Amazon - Account Merge</Name>
+                    <Title>Login with Amazon</Title>
+                    <MetaTitle>Login with Amazon</MetaTitle>
+                    <MetaKeywords>Login, Amazon</MetaKeywords>
+                    <MetaDescription>Login with Amazon</MetaDescription>
+                </LinkLanguage>
+            </Link>
+
+            <!-- script that handles account creation on amazon login -->
+            <Link>
+                <Filename>lpa_create.php</Filename>
+                <Name>Login-and-Pay with Amazon Accounterstellung</Name>
+                <Template>lpa_create.tpl</Template>
+                <VisibleAfterLogin>N</VisibleAfterLogin>
+                <PrintButton>N</PrintButton>
+                <NoFollow>Y</NoFollow>
+                <SSL>2</SSL>
+                <LinkLanguage iso="GER">
+                    <Seo>lpacreate</Seo>
+                    <Name>Login mit Amazon - Accounterstellung</Name>
+                    <Title>Login mit Amazon</Title>
+                    <MetaTitle>Login mit Amazon</MetaTitle>
+                    <MetaKeywords>Login, Amazon</MetaKeywords>
+                    <MetaDescription>Login mit Amazon</MetaDescription>
+                </LinkLanguage>
+                <LinkLanguage iso="ENG">
+                    <Seo>lpacreate-en</Seo>
+                    <Name>Login with Amazon - Account Creation</Name>
+                    <Title>Login with Amazon</Title>
+                    <MetaTitle>Login with Amazon</MetaTitle>
+                    <MetaKeywords>Login, Amazon</MetaKeywords>
+                    <MetaDescription>Login with Amazon</MetaDescription>
+                </LinkLanguage>
+            </Link>
+
+            <!-- Script that handles payment / LPAs own checkout -->
+            <Link>
+                <Filename>lpa_checkout.php</Filename>
+                <Name>Login-and-Pay with Amazon Checkout</Name>
+                <Template>lpa_checkout.tpl</Template>
+                <VisibleAfterLogin>N</VisibleAfterLogin>
+                <PrintButton>N</PrintButton>
+                <NoFollow>Y</NoFollow>
+                <SSL>2</SSL>
+                <LinkLanguage iso="GER">
+                    <Seo>lpacheckout</Seo>
+                    <Name>Bezahlen mit Amazon Pay - Checkout</Name>
+                    <Title>Bezahlen mit Amazon Pay</Title>
+                    <MetaTitle>Bezahlen mit Amazon Pay</MetaTitle>
+                    <MetaKeywords>Bezahlen, Amazon Pay</MetaKeywords>
+                    <MetaDescription>Bezahlen mit Amazon Pay</MetaDescription>
+                </LinkLanguage>
+                <LinkLanguage iso="ENG">
+                    <Seo>lpacheckout-en</Seo>
+                    <Name>Pay with Amazon Pay - Checkout</Name>
+                    <Title>Pay with Amazon Pay</Title>
+                    <MetaTitle>Pay with Amazon Pay</MetaTitle>
+                    <MetaKeywords>Pay, Amazon Pay</MetaKeywords>
+                    <MetaDescription>Pay with Amazon Pay</MetaDescription>
+                </LinkLanguage>
+            </Link>
+            
+            <!-- checkout complete -->
+            <Link>
+                <Filename>lpa_checkout_complete.php</Filename>
+                <Name>Login-and-Pay with Amazon Checkout Complete</Name>
+                <Template>lpa_checkout_complete.tpl</Template>
+                <VisibleAfterLogin>N</VisibleAfterLogin>
+                <PrintButton>Y</PrintButton>
+                <NoFollow>Y</NoFollow>
+                <SSL>2</SSL>
+                <LinkLanguage iso="GER">
+                    <Seo>lpacomplete</Seo>
+                    <Name>Bezahlen mit Amazon Pay - Checkout abgeschlossen</Name>
+                    <Title>Bezahlen mit Amazon Pay</Title>
+                    <MetaTitle>Bezahlen mit Amazon Pay</MetaTitle>
+                    <MetaKeywords>Bezahlen, Amazon Pay</MetaKeywords>
+                    <MetaDescription>Bezahlen mit Amazon Pay</MetaDescription>
+                </LinkLanguage>
+                <LinkLanguage iso="ENG">
+                    <Seo>lpacomplete-en</Seo>
+                    <Name>Pay with Amazon Pay - Checkout complete</Name>
+                    <Title>Pay with Amazon Pay</Title>
+                    <MetaTitle>Pay with Amazon Pay</MetaTitle>
+                    <MetaKeywords>Pay, Amazon Pay</MetaKeywords>
+                    <MetaDescription>Pay with Amazon Pay</MetaDescription>
+                </LinkLanguage>
+            </Link>
+
+            <!-- Process successful return from Amazon Pay after MFA challenge -->
+            <Link>
+                <Filename>lpa_process_success.php</Filename>
+                <Name>Login-and-Pay with Amazon Process Success</Name>
+                <Template>dummy.tpl</Template>
+                <VisibleAfterLogin>N</VisibleAfterLogin>
+                <PrintButton>N</PrintButton>
+                <NoFollow>Y</NoFollow>
+                <SSL>2</SSL>
+                <LinkLanguage iso="GER">
+                    <Seo>lpasuccess</Seo>
+                    <Name>Bezahlen mit Amazon Pay - Verarbeitung Erfolg</Name>
+                    <Title>Bezahlen mit Amazon Pay</Title>
+                    <MetaTitle>Bezahlen mit Amazon Pay</MetaTitle>
+                    <MetaKeywords>Bezahlen, Amazon Pay</MetaKeywords>
+                    <MetaDescription>Bezahlen mit Amazon Pay</MetaDescription>
+                </LinkLanguage>
+                <LinkLanguage iso="ENG">
+                    <Seo>lpasuccess-en</Seo>
+                    <Name>Pay with Amazon Pay - Process Success</Name>
+                    <Title>Pay with Amazon Pay</Title>
+                    <MetaTitle>Pay with Amazon Pay</MetaTitle>
+                    <MetaKeywords>Pay, Amazon Pay</MetaKeywords>
+                    <MetaDescription>Pay with Amazon Pay</MetaDescription>
+                </LinkLanguage>
+            </Link>
+
+            <!-- Process failure return from Amazon Pay after MFA challenge -->
+            <Link>
+                <Filename>lpa_process_failure.php</Filename>
+                <Name>Login-and-Pay with Amazon Process Failure</Name>
+                <Template>dummy.tpl</Template>
+                <VisibleAfterLogin>N</VisibleAfterLogin>
+                <PrintButton>N</PrintButton>
+                <NoFollow>Y</NoFollow>
+                <SSL>2</SSL>
+                <LinkLanguage iso="GER">
+                    <Seo>lpafailure</Seo>
+                    <Name>Bezahlen mit Amazon Pay - Verarbeitung Fehler</Name>
+                    <Title>Bezahlen mit Amazon Pay</Title>
+                    <MetaTitle>Bezahlen mit Amazon Pay</MetaTitle>
+                    <MetaKeywords>Bezahlen, Amazon Pay</MetaKeywords>
+                    <MetaDescription>Bezahlen mit Amazon Pay</MetaDescription>
+                </LinkLanguage>
+                <LinkLanguage iso="ENG">
+                    <Seo>lpafailure-en</Seo>
+                    <Name>Pay with Amazon Pay - Process Failure</Name>
+                    <Title>Pay with Amazon Pay</Title>
+                    <MetaTitle>Pay with Amazon Pay</MetaTitle>
+                    <MetaKeywords>Pay, Amazon Pay</MetaKeywords>
+                    <MetaDescription>Pay with Amazon Pay</MetaDescription>
+                </LinkLanguage>
+            </Link>
+
+        </FrontendLink>
+
+        <Emailtemplate>
+            <Template>
+                <Name>Amazon LPA Soft-Decline</Name>
+                <Description>Wird dem Kunden bei einem Soft-Decline durch Amazon beim Bezahlen mit Amazon zugesendet.</Description>
+                <Type>text/html</Type>
+                <ModulId>softdecline</ModulId>
+                <Active>Y</Active>
+                <AKZ>0</AKZ>
+                <AGB>0</AGB>
+                <WRB>0</WRB>
+                <TemplateLanguage iso="GER">
+                    <Subject>Bitte aktualisieren Sie Ihre Zahlungsinformationen</Subject>
+                    <ContentHtml><![CDATA[
+<p>Sehr geehrter Kunde,</p>
+<br />
+<p>Vielen Dank für Ihre Bestellung bei {$Einstellungen.global.global_shopname}.</p>
+<p>Leider wurde Ihre Bezahlung bei Amazon Pay abgelehnt.</p>
+<p>Sie können unter <a href="https://payments.amazon.de/overview">https://payments.amazon.de/overview</a> die Zahlungsinformationen für Ihre Bestellung
+aktualisieren, indem Sie eine andere Zahlungsweise auswählen oder eine neue Zahlungsweise angeben.</p>
+<p>Mit der neuen Zahlungsweise wird dann ein Zahlungsversuch vorgenommen, und Sie erhalten eine Bestätigungsmail.</p>
+<br />
+<p>Mit freundlichem Gruß</p>
+<br />
+<p>Ihr Team von {$Einstellungen.global.global_shopname}</p>
+                    ]]></ContentHtml>
+                    <ContentText><![CDATA[
+Sehr geehrter Kunde,
+
+Vielen Dank für Ihre Bestellung bei {$Einstellungen.global.global_shopname}.
+Leider wurde Ihre Bezahlung bei Amazon Pay abgelehnt.
+Sie können unter https://payments.amazon.de/overview die Zahlungsinformationen für Ihre Bestellung
+aktualisieren, indem Sie eine andere Zahlungsweise auswählen oder eine neue Zahlungsweise angeben.
+Mit der neuen Zahlungsweise wird dann ein Zahlungsversuch vorgenommen, und Sie erhalten eine Bestätigungsmail.
+
+Mit freundlichem Gruß
+
+Ihr Team von {$Einstellungen.global.global_shopname}
+                    ]]></ContentText>
+                </TemplateLanguage>
+                <TemplateLanguage iso="ENG">
+                    <Subject>Please update your payment information</Subject>
+                    <ContentHtml><![CDATA[
+<p>Valued customer,</p>
+<br />
+<p>Thank you very much for your order at {$Einstellungen.global.global_shopname}.</p>
+<p>Unfortunately, Amazon Pay declined your payment.</p>
+<p>Please go to <a href="https://payments.amazon.co.uk/overview">https://payments.amazon.co.uk/overview</a> and update the payment information
+for your order. Afterwards we will automatically request payment again from Amazon Pay
+and you will receive a confirmation mail.</p>
+<br />
+<p>Kind regards,</p>
+<p>{$Einstellungen.global.global_shopname}</p>
+                    ]]></ContentHtml>
+                    <ContentText><![CDATA[
+Valued customer,
+
+Thank you very much for your order at {$Einstellungen.global.global_shopname}.
+Unfortunately, Amazon Pay declined your payment.
+Please go to https://payments.amazon.co.uk/overview and update the payment information
+for your order. Afterwards we will automatically request payment again from Amazon Pay
+and you will receive a confirmation mail.
+
+Kind regards,
+{$Einstellungen.global.global_shopname}
+                    ]]></ContentText>
+                </TemplateLanguage>
+            </Template>
+
+            <Template>
+                <Name>Amazon LPA Hard-Decline</Name>
+                <Description>Wird dem Kunden bei einem Hard-Decline durch Amazon beim Bezahlen mit Amazon zugesendet.</Description>
+                <Type>text/html</Type>
+                <ModulId>harddecline</ModulId>
+                <Active>Y</Active>
+                <AKZ>0</AKZ>
+                <AGB>0</AGB>
+                <WRB>0</WRB>
+                <TemplateLanguage iso="GER">
+                    <Subject>Bitte kontaktieren Sie uns wegen Ihrer Bestellung</Subject>
+                    <ContentHtml><![CDATA[
+<p>Sehr geehrter Kunde,</p>
+<br />
+<p>Vielen Dank für Ihre Bestellung bei {$Einstellungen.global.global_shopname}.</p>
+<p>Leider wurde die Zahlung zu Ihrer Bestellung in unserem Onlineshop {$Einstellungen.global.global_shopname} von Amazon Pay zurückgewiesen.</p>
+<p>Bitte kontaktieren Sie uns.</p>
+<br />
+<p>Mit freundlichem Gruß</p>
+<br />
+<p>Ihr Team von {$Einstellungen.global.global_shopname}</p>
+                    ]]></ContentHtml>
+                    <ContentText><![CDATA[
+Sehr geehrter Kunde,
+
+Vielen Dank für Ihre Bestellung bei {$Einstellungen.global.global_shopname}.
+Leider wurde die Zahlung zu Ihrer Bestellung in unserem Onlineshop {$Einstellungen.global.global_shopname} von Amazon Pay zurückgewiesen.
+Bitte kontaktieren Sie uns.
+
+Mit freundlichem Gruß
+
+Ihr Team von {$Einstellungen.global.global_shopname}
+                    ]]></ContentText>
+                </TemplateLanguage>
+                <TemplateLanguage iso="ENG">
+                    <Subject>Please contact us about your order</Subject>
+                    <ContentHtml><![CDATA[
+<p>Valued customer,</p>
+<br />
+<p>Unfortunately, Amazon Pay declined the payment for your order in our online shop {$Einstellungen.global.global_shopname}.</p>
+<p>Please contact us.</p>
+<br />
+<p>Kind regards,</p>
+<p>{$Einstellungen.global.global_shopname}</p>
+                     ]]></ContentHtml>
+                    <ContentText><![CDATA[
+Valued customer,
+
+Unfortunately, Amazon Pay declined the payment for your order in our online shop {$Einstellungen.global.global_shopname}.
+Please contact us.
+
+Kind regards,
+{$Einstellungen.global.global_shopname}
+                     ]]></ContentText>
+                </TemplateLanguage>
+            </Template>
+        </Emailtemplate>
+        
+    </Install>
+</jtlshop3plugin>

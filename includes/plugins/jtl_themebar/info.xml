@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+    <Name>JTL Template Themebar</Name>
+    <Description>Dieses Plugin dient ausschließlich Entwicklungszwecken, um Themes im Frontend zu wechseln und den Shop
+        in verschiedene Gerätegrößen zu betrachten. Das Plugin ändert über Javascript das aktuelle Theme. Die
+        Template-Einstellung Komprimierung von JavaScript- und CSS-Dateien muss aktiv sein.</Description>
+    <Author>JTL-Software-GmbH</Author>
+    <URL>http://www.jtl-software.de</URL>
+    <XMLVersion>100</XMLVersion>
+    <Shop4Version>400</Shop4Version>
+    <PluginID>jtl_themebar</PluginID>
+	<Install>
+        <Version nr="100">
+            <CreateDate>2016-06-21</CreateDate>
+        </Version>
+		<Hooks>					
+			<Hook id="133">smarty.php</Hook>
+            <Hook id="140">themebar.php</Hook>
+        </Hooks>
+		<Locales>
+            <Variable>
+                <Name>jtl_themebar_template</Name>
+                <Description>Template Themebar</Description>
+                <VariableLocalized iso="GER">Themebar</VariableLocalized>
+                <VariableLocalized iso="ENG">Themebar</VariableLocalized>
+            </Variable>
+        </Locales>
+        <CSS>
+            <file>
+                <name>themebar.css</name>
+                <priority>1</priority>
+            </file>
+        </CSS>
+        <JS>
+            <file>
+                <name>jquery.cookie.js</name>
+                <priority>2</priority>
+                <position>body</position>
+            </file>
+            <file>
+                <name>themebar.js</name>
+                <priority>1</priority>
+                <position>body</position>
+            </file>
+        </JS>
+	</Install>	
+</jtlshop3plugin>

@@ -1,0 +1,14 @@
+#cap { width: 100%; font: normal "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif"; line-height: 1.2em; }
+#cap a,a:hover,a:visited { color: #000; font: normal "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif"; line-height: 1.2em; }
+#cap .logo { text-align: center; }
+#cap .special { text-align: center; }
+#cap .special a,a:hover,a:visited { color: #003AFF; font-weight: bold; }
+#cap .special2 {  }
+#cap .special2 a,a:hover,a:visited { color: #003AFF; font-weight: bold; }
+#cap .beschreibung {  }
+#cap .beschreibung a,a:hover,a:visited { color: #003AFF; font-weight: bold; }
+#cap .beschreibung ul li { list-style: circle inside; }
+
+#cap .actions { margin-top: 1em; }
+
+#cap .actions li { margin-bottom: 1em; }

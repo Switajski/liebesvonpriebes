@@ -1,0 +1,48 @@
+/*
+Solution 360 GmbH
+*/
+/* 
+    Created on : 20.11.2014, 09:16:30
+    Author     : sebastian
+*/
+
+table tbody tr td button {
+    padding: 0 2px;
+    font-size: 12px;
+}
+
+.lpa-admin-heading {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.settings #orders .input-group, #settings #orders .input-group {
+    max-width: 300px;
+    margin-bottom: 2px;
+}
+
+.lpa-admin-order-entry,
+.lpa-admin-auth-entry,
+.lpa-admin-cap-entry {
+    cursor: pointer;
+}
+
+#lpa-order-window {
+    max-height: 750px;
+    overflow: scroll;
+}
+
+#extended-functions-feedback.success,
+#extended-functions-feedback.failure {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+#extended-functions-feedback.success {
+    border-color: darkgreen;
+}
+
+#extended-functions-feedback.failure {
+    border-color: red;
+}

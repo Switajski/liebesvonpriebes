@@ -1,0 +1,63 @@
+#pp-plus .spinner .loader {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin: 0 0 0 -15px;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  background-color: rgba(255, 255, 255, 0.701961);
+  -webkit-animation: rotation .7s infinite linear;
+  -moz-animation: rotation .7s infinite linear;
+  -o-animation: rotation .7s infinite linear;
+  animation: rotation .7s infinite linear;
+  border-left: 8px solid rgba(0, 0, 0, 0.2);
+  border-right: 8px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 8px solid rgba(0, 0, 0, 0.2);
+  border-top: 8px solid #2180c0;
+  border-radius: 100%;
+}
+
+#pp-plus .spinner {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+	background-color: rgba(255,255,255,0.5);
+}
+
+#pp-plus .spinner .spinWrap {
+  width: 200px;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  margin-left: -100px;
+}
+
+#pp-plus .spinner .loadingMessage {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 55px;
+  text-align: center;
+  z-index: 100;
+}
+
+#pp-plus {
+	/*min-height: 248px;*/
+	position: relative;
+}
+
+button.paypalexpress {
+	padding: 0;
+	margin-top: 15px;
+    background: none;
+    border: 0;
+}
+
+a.paypalexpress {
+    float: left;
+}

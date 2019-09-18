@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+	<Name>EVO Theme-Editor</Name>
+	<Description>LESS-Editor und -Compiler für das EVO Theme.</Description>
+	<Author>JTL-Software-GmbH</Author>
+	<URL>https://www.jtl-software.de</URL>
+	<XMLVersion>102</XMLVersion>
+	<Shop4Version>400</Shop4Version>
+	<PluginID>evo_editor</PluginID>
+	<Install>
+		<Version nr="100">
+			<CreateDate>2015-02-04</CreateDate>
+		</Version>
+		<Version nr="101">
+			<CreateDate>2017-12-06</CreateDate>
+		</Version>
+		<Hooks>
+			<Hook id="132">132_jtltpl.php</Hook>
+			<Hook id="140">140_jtltpl.php</Hook>
+			<Hook id="175">175_jtltpl.php</Hook>
+		</Hooks>
+		<Adminmenu>
+			<Customlink sort="1">
+				<Name>EVO Theme-Editor</Name>
+				<Filename>api.php</Filename>
+			</Customlink>
+		</Adminmenu>
+		<Locales>
+			<Variable>
+				<VariableLocalized iso="GER">Theme %s erfolgreich gespeichert unter %s.</VariableLocalized>
+				<VariableLocalized iso="ENG">Theme %s successfully saved at %s.</VariableLocalized>
+				<Description>Wenn ein Theme im Templatekonfigurator gespeichert wurde.</Description>
+				<Name>compile_ok</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Fehler beim Kompilieren: </VariableLocalized>
+				<VariableLocalized iso="ENG">Compilation error: </VariableLocalized>
+				<Description>Wenn ein Theme im Templatekonfigurator nicht gespeichert werden konnte.</Description>
+				<Name>compile_failed</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Datei %s ist nicht beschreibbar.</VariableLocalized>
+				<VariableLocalized iso="ENG">File %s is not writeable.</VariableLocalized>
+				<Description>Wenn Datei nicht beschreibbar ist.</Description>
+				<Name>file_not_writeable</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Datei %s existiert nicht.</VariableLocalized>
+				<VariableLocalized iso="ENG">File %s does not exist.</VariableLocalized>
+				<Description>Wenn Datei nicht existiert.</Description>
+				<Name>file_doest_not_exist</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Ungültiger CSRF-Token.</VariableLocalized>
+				<VariableLocalized iso="ENG">Invalid CSRF token.</VariableLocalized>
+				<Description>Bei CSRF-Validierungsfehler</Description>
+				<Name>msg_invalid_token</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Zugriffsfehler: Kein Admin-User.</VariableLocalized>
+				<VariableLocalized iso="ENG">Forbidden: Not an admin user.</VariableLocalized>
+				<Description>Bei unerlaubtem Speichern</Description>
+				<Name>msg_no_admin_user</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">LiveStyler öffnen</VariableLocalized>
+				<VariableLocalized iso="ENG">Open LiveStyler</VariableLocalized>
+				<Description>Buttonbeschriftung</Description>
+				<Name>btn_open</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">speichern</VariableLocalized>
+				<VariableLocalized iso="ENG">save</VariableLocalized>
+				<Description>Buttonbeschriftung</Description>
+				<Name>btn_save</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">übernehmen</VariableLocalized>
+				<VariableLocalized iso="ENG">apply</VariableLocalized>
+				<Description>Buttonbeschriftung</Description>
+				<Name>btn_apply</Name>
+			</Variable>
+		</Locales>
+	</Install>
+</jtlshop3plugin>

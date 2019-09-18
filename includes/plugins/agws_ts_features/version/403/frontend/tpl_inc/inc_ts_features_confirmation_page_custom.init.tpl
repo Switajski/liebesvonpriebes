@@ -1,0 +1,1 @@
+{* Rename this file to inc_ts_features_confirmation_page_custom.tpl and use it for your own tpl-customizing*}

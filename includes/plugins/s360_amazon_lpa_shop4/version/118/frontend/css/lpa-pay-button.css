@@ -1,0 +1,30 @@
+/*
+Solution 360 GmbH
+*/
+.lpa-pay-button {
+    margin-top: 20px;
+    text-align: right;
+}
+.lpa-pay-button.lpa-pay-button-express {
+    margin: 5px;
+    text-align: inherit;
+    display: inline-block;
+}
+
+#order_choose_order_type .lpa-pay-button {
+    text-align: center;
+}
+
+.lpa-checkout-hint-button .lpa-pay-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.lpa-pay-button img {
+    max-width: 100%;
+}
+
+.lpa-alternate-checkout-snippet {
+    margin-top: 15px;
+}

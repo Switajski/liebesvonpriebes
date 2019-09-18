@@ -1,0 +1,51 @@
+.jtlsearch_status_box fieldset {
+    border: 1px solid #666;
+    padding: 10px;
+    margin-top: 25px;
+}
+
+.jtlsearch_wrapper { 
+    background: #eee;
+}
+
+.jtlsearch_infocolumn {
+    overflow:hidden; 
+    background: #fff;
+}
+
+.jtlsearch_actioncolumn {
+    float: left; 
+    width: 300px;
+}
+
+.jtlsearch_inner {
+    padding: 10px;
+}
+
+.jtlsearch_corebox{
+    margin-top: 25px;
+}
+
+.jtlsearch_corebox_headline {
+    font-weight: bold;
+}
+
+.jtlsearch_half {
+    width: 50%;
+}
+
+.jtlsearch_third {
+    width: 33%;
+}
+
+.jtlsearch_twothird {
+    width: 66%;
+}
+
+.jtlsearch_left {
+    float: left;
+}
+
+.jtlsearch_clear {
+    clear: both;
+}

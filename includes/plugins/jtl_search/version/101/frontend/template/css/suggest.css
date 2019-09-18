@@ -1,0 +1,76 @@
+.jtl_search_results .result_copy {
+    height: 20px;
+    line-height: 20px;
+    margin: 5px 0 0 0;
+    background: #fff url('../img/jtl_search_logo.png') top right no-repeat;
+}
+
+.jtl_search_results {
+	z-index: 9999;
+	display: none;
+	position: absolute;
+	
+	background-color: #fff;
+	border: 1px solid #ccc;
+	
+	margin: 2px 0 0 0;
+	padding: 10px;
+	width: 440px;
+}
+
+.jtl_search_results .result_row {
+	float: left;
+	width: 220px;
+}
+
+.jtl_search_results .result_row.first {
+	width: 210px;
+	padding: 0 4px 0 0;
+	margin: 0 5px 0 0;
+	border-right: 1px dotted #ccc;
+}
+
+.jtl_search_results .result_row > p {
+	font-weight: bold;
+	font-size: 1.1em;
+	margin: 10px 0 0 0;
+}
+
+.jtl_search_results .result_row > p:first-child {
+	margin: 0;
+}
+
+.jtl_search_results .result_row > a {
+	display: block;
+	line-height: 1.5em;
+	text-decoration: none;
+}
+
+.jtl_search_results .result_row > a:hover,
+.jtl_search_results .result_row > a.active {
+	background-color: #f0f0f0;
+}
+
+.jtl_search_results .result_row > a div.article_wrapper {
+	margin: 5px 0;
+}
+
+.jtl_search_results .result_row > a div.article_wrapper div.article_image {
+   width: 50px;
+   height: 50px;
+   padding: 1px;
+   float: left;
+   line-height: 0;
+   border: 1px solid #eee;
+   text-align: center;
+   margin-right: 3px;
+}
+
+.jtl_search_results .result_row > a div.article_wrapper div.article_image img {
+	max-width: 50px;
+   max-height: 50px;
+}
+
+.jtl_search_results .result_row > a div.article_wrapper div.article_info {
+	overflow: hidden;
+}

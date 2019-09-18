@@ -1,0 +1,13 @@
+#JTLSearch_testperiod .JTLSearch_testperiod_input_line {
+    width: 350px;
+    margin: 10px;
+}
+
+#JTLSearch_testperiod .JTLSearch_testperiod_input_line input{
+    float: right;
+}
+
+#JTLSearch_testperiod .JTLSearch_testperiod_submit_line {
+    width: 350px;
+    margin-top: 20px;
+}

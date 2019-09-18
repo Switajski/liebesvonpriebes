@@ -1,0 +1,87 @@
+::-webkit-input-placeholder {color: #a1a1a1 !important;}
+:-moz-placeholder {color: #a1a1a1 !important; opacity: 1 !important;}
+::-moz-placeholder {color: #a1a1a1 !important; opacity: 1 !important;}
+:-ms-input-placeholder {color: #a1a1a1 !important;}
+
+.vspacer10 {height:10px;}
+.vspacer20 {height:20px;}
+.vspacer30 {height:30px;}
+.vspacer40 {height:40px;}
+.vspacer50 {height:50px;}
+
+#ts-intro {float: left;width:80%;}
+#ts-image {float: left; padding-right: 20px; position: relative;}
+
+.panel-title {font-size:22px;}
+
+#ts_features_wrapper2 .panel-heading {padding-left:0px;}
+
+label.tsConfig{
+    width: 20%;
+    float: left;
+    font-weight: bold;
+    padding: 0 0 15px 0;
+}
+label.tsConfig2{
+    float: left;
+    font-weight: bold;
+    padding: 0 0 15px 0;
+}
+
+
+.input_tsConfig,
+.select_tsConfig,
+.select_tsRatingWidget_Position,
+.input_tsRatingWidget_Status{
+    float: left;
+    width: 30%;
+}
+
+.input_tsConfigSmall{
+    float: left;
+    width: 10%;
+}
+
+.input_tsConfig2{
+    float: left;
+    padding-right: 10px;
+}
+
+.ts_SmallNumberInput {width:20%;display:inline-block;}
+[rel="popover"]{
+            cursor: pointer;
+            display:inline-block; /* chrome-fix */
+        }
+
+.expert-intro,
+.needhelp-intro {
+	border: 1px solid grey;
+    border-radius: 10px;
+	padding: 8px;
+    /*width:70%;*/
+}
+
+.panel-title2 > span {
+    border-bottom: 1px solid rgba(120,130,140,.13);
+    padding-right: 20px;
+}
+
+.btn_tsadd {clear: both;}
+
+.ts_shop4 span.info, .ts_shop4 span.success, .ts_shop4 span.error {
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 0.95em;
+    font-weight: bold;
+    padding: 3px 5px;
+}
+
+.ts_shop4 span.error {
+    background: #fecfd3 none repeat scroll 0 0 !important;
+    color: #8e0210 !important;
+}
+
+.ts_shop4 span.info {
+    background: #dae9fe none repeat scroll 0 0 !important;
+    color: #013481 !important;
+}

@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+	<Name>JTL Search</Name>
+	<Description>Eine fehlertolerante Suche</Description>
+	<Author>JTL-Software-GmbH</Author>
+	<URL>http://www.jtl-software.de</URL>
+	<XMLVersion>100</XMLVersion>
+	<Shop4Version>400</Shop4Version>
+	<PluginID>jtl_search</PluginID>
+	<Install>
+		<Version nr="100">
+			<CreateDate>2011-11-18</CreateDate>
+		</Version>
+		<Version nr="101">
+			<CreateDate>2012-07-20</CreateDate>
+		</Version>
+		<Version nr="102">
+			<CreateDate>2012-09-17</CreateDate>
+		</Version>
+		<Version nr="103">
+			<CreateDate>2012-10-23</CreateDate>
+		</Version>
+		<Version nr="104">
+			<CreateDate>2012-11-02</CreateDate>
+		</Version>
+		<Version nr="105">
+			<CreateDate>2012-11-20</CreateDate>
+		</Version>
+		<Version nr="106">
+			<CreateDate>2013-09-12</CreateDate>
+		</Version>
+		<Version nr="107">
+			<CreateDate>2014-08-18</CreateDate>
+		</Version>
+		<Version nr="108">
+			<CreateDate>2014-08-18</CreateDate>
+		</Version>
+		<Version nr="109">
+			<CreateDate>2015-11-06</CreateDate>
+		</Version>
+		<Version nr="110">
+			<CreateDate>2016-05-13</CreateDate>
+		</Version>
+		<Version nr="111">
+			<CreateDate>2016-09-12</CreateDate>
+			<SQL>update.sql</SQL>
+		</Version>
+		<Hooks>
+			<Hook id="131">manualExport.php</Hook>
+			<Hook id="160">searchcheck.php</Hook>
+			<Hook id="161">search.php</Hook>
+			<Hook id="158">cron.php</Hook>
+			<Hook id="1">statproduct.php</Hook>
+			<Hook id="167">statproduct.php</Hook>
+			<Hook id="140">inject.php</Hook>
+			<Hook id="151">deltaexportProduct.php</Hook>
+			<Hook id="173">deltaexportManufacturer.php</Hook>
+			<Hook id="174">deltaexportCategory.php</Hook>
+			<Hook id="171">deltaexportManufacturerDeletes.php</Hook>
+			<Hook id="172">deltaexportCategoryDeletes.php</Hook>
+			<Hook id="152">deltaexportProductDeletes.php</Hook>
+			<Hook id="134">deltaexport.php</Hook>
+		</Hooks>
+		<Boxes>
+			<Box>
+				<Name>Filter (JTL Search)</Name>
+				<Available>2</Available>
+				<TemplateFile>box_filter.tpl</TemplateFile>
+			</Box>
+		</Boxes>
+		<Adminmenu>
+			<Customlink sort="1">
+				<Name>Verwaltung</Name>
+				<Filename>verwaltung.php</Filename>
+			</Customlink>
+			<Customlink sort="2">
+				<Name>Lizenz</Name>
+				<Filename>license.php</Filename>
+			</Customlink>
+			<Customlink sort="3">
+				<Name>Einstellungen</Name>
+				<Filename>settings.php</Filename>
+			</Customlink>
+		</Adminmenu>
+		<Locales>
+			<Variable>
+				<VariableLocalized iso="GER">Suche nach</VariableLocalized>
+				<VariableLocalized iso="ENG">Your search for</VariableLocalized>
+				<Description></Description>
+				<Name>search_for</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Meinten Sie</VariableLocalized>
+				<VariableLocalized iso="ENG">Did you mean</VariableLocalized>
+				<Description></Description>
+				<Name>did_you_mean</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Seiten</VariableLocalized>
+				<VariableLocalized iso="ENG">Pages</VariableLocalized>
+				<Description></Description>
+				<Name>suggested_pages</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Suchbegriffe</VariableLocalized>
+				<VariableLocalized iso="ENG">Search terms</VariableLocalized>
+				<Description></Description>
+				<Name>suggested_search_terms</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Kategorievorschläge</VariableLocalized>
+				<VariableLocalized iso="ENG">Suggested categories</VariableLocalized>
+				<Description></Description>
+				<Name>suggested_categories</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Herstellervorschläge</VariableLocalized>
+				<VariableLocalized iso="ENG">Suggested manufacturers</VariableLocalized>
+				<Description></Description>
+				<Name>suggested_manufacturers</Name>
+			</Variable>
+			<Variable>
+				<VariableLocalized iso="GER">Produktvorschläge</VariableLocalized>
+				<VariableLocalized iso="ENG">Suggested products</VariableLocalized>
+				<Description></Description>
+				<Name>suggested_products</Name>
+			</Variable>
+		</Locales>
+		<CSS>
+			<file>
+				<name>suggest.css</name>
+				<priority>5</priority>
+			</file>
+			<file>
+				<name>priceslider.css</name>
+				<priority>5</priority>
+			</file>
+		</CSS>
+		<JS>
+			<file>
+				<name>jquery.dependClass.js</name>
+				<priority>5</priority>
+				<position>body</position>
+			</file>
+			<file>
+				<name>jquery.slider.js</name>
+				<priority>5</priority>
+				<position>body</position>
+			</file>
+		</JS>
+	</Install>
+</jtlshop3plugin>

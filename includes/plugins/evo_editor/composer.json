@@ -1,0 +1,19 @@
+{
+    "name": "evo-editor",
+    "type": "APP",
+    "description": "LESS Editor for the EVO Theme",
+    "homepage": "http://www.jtl-software.de",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "JTL Software GmbH",
+            "email": "info@jtl-software.de",
+            "homepage": "http://www.jtl-software.de",
+            "role": "Founder"
+        }
+    ],
+    "require": {
+        "oyejorge/less.php": "~1.7",
+        "kevinlebrun/colors.php": "0.*"
+	}
+}

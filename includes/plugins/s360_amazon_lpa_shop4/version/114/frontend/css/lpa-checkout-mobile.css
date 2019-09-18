@@ -1,0 +1,66 @@
+/*
+ *  Solution 360 GmbH
+ */
+#lpa-checkout-overlay {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+    background: #000; 
+    width:      100%;
+    height:     100%; 
+    z-index:    10000;
+    top:        0; 
+    left:       0; 
+    position:   fixed; 
+    display: none;
+    cursor: wait;
+}
+
+#lpa-checkout-overlay-content {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 200px;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #fff;
+    padding-top: 20px;
+    color: #000;
+    border-radius: 5px;
+    z-index: 10001;
+    display: none;
+}
+
+.lpa-cancel {
+    float: left;
+    text-align: left;
+}
+
+.lpa-next {
+    float: right;
+    text-align: right;
+}
+
+ul.rowsel, ul.hlist, ul.input_block {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.rowsel li {
+    padding: 10px 0;
+}
+
+ul.rowsel li div {
+    display: inline-block;
+}
+
+/* Smartphone and small window */
+#addressBookWidgetDiv, #walletWidgetDiv, #readOnlyWalletWidgetDiv, #readOnlyAddressBookWidgetDiv, #editWalletWidgetDiv {
+  width: 100%; 
+  height: 228px;
+}

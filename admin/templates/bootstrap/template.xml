@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes"?>
+<Template>
+    <Name>Bootstrap Admin for JTL Shop4</Name>
+    <Author>JTL-Software-GmbH</Author>
+    <URL>http://www.jtl-software.de</URL>
+    <Version>1.00</Version>
+    <ShopVersion>400</ShopVersion>
+    <Preview>preview.png</Preview>
+    <Minify>
+        <CSS Name="admin_css">
+            <File Path="css/jquery-ui-1.10.3.theme.css"/>
+            <File Path="css/jquery-ui-1.11.4.min.css"/>
+            <File Path="css/bootstrap.min.css"/>
+            <File Path="css/font-awesome.min.css"/>
+            <File Path="css/colorpicker.css"/>
+            <File Path="css/fileinput.min.css"/>
+            <File Path="css/bootstrap-ladda.css"/>
+            <File Path="css/animate.css"/>
+            <File Path="css/custom.css"/>
+            <File Path="css/select2.min.css"/>
+            <File Path="css/daterangepicker.css"/>
+            <File Path="css/typeaheadjs.css"/>
+        </CSS>
+        <JS Name="admin_js">
+            <File Path="js/jquery-1.12.4.min.js"/>
+            <File Path="js/jquery-ui-1.11.4.min.js"/>
+            <File Path="js/bootstrap.min.js"/>
+            <File Path="js/colorpicker.js"/>
+            <File Path="js/jquery.ui.datepicker-de.js"/>
+            <File Path="js/jquery-ui-timepicker-addon.js"/>
+            <File Path="js/jquery.cookie.js"/>
+            <File Path="js/highcharts.min.js"/>
+            <File Path="js/global.js"/>
+            <File Path="js/versandart_bruttonetto.js"/>
+            <File Path="js/fileinput.min.js"/>
+            <File Path="js/fileinput_locale_de.js"/>
+            <File Path="js/bootstrap-ladda.js"/>
+            <File Path="js/bootstrap-notify.min.js"/>
+            <File Path="js/humanize-duration.js"/>
+            <File Path="js/jquery.highlight.js"/>
+            <File Path="js/jquery.stickytableheaders.min.js"/>
+            <File Path="js/jquery.bootpag.js"/>
+            <File Path="js/select2.min.js"/>
+            <File Path="js/masonry.pkgd.min.js"/>
+            <File Path="js/moment.js"/>
+            <File Path="js/daterangepicker.js"/>
+            <File Path="js/searchpicker.js"/>
+            <File Path="js/typeahead.bundle.js"/>
+        </JS>
+    </Minify>
+</Template>

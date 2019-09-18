@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+    <Name>JTL Händlerbund Plugin für Rechtstexte</Name>
+    <Description>Mit dieser Schnittstelle des Händlerbund e.V. können die auf der Website erzeugten juristischen Dokumente im JTL-Shop verwendet werden.</Description>
+    <Author>JTL-Software</Author>
+    <URL>http://www.jtl-software.de</URL>
+    <XMLVersion>102</XMLVersion>
+    <Shop4Version>400</Shop4Version>
+    <PluginID>jtl_haendlerbund</PluginID>
+    <Install>
+        <Version nr="100">
+            <SQL>hb.sql</SQL>
+            <CreateDate>2012-06-18</CreateDate>
+        </Version>
+        <Version nr="101">
+            <CreateDate>2013-07-02</CreateDate>
+        </Version>
+        <Version nr="102">
+            <SQL>update.sql</SQL>
+            <CreateDate>2015-01-06</CreateDate>
+        </Version>
+        <Version nr="110">
+            <CreateDate>2016-01-22</CreateDate>
+        </Version>
+        <Hooks>
+            <Hook id="99">hb.php</Hook>
+        </Hooks>
+        <Adminmenu>
+            <Customlink sort="2">
+                <Name>Status</Name>
+                <Filename>status.php</Filename>
+            </Customlink>
+            <Settingslink sort="1">
+                <Name>Einstellungen</Name>
+                <Setting type="selectbox" initialValue="N" sort="1" conf="Y">
+                    <Name>Händlerbund nutzen</Name>
+                    <Description>Soll das Händlerbund-Plugin genutzt werden?</Description>
+                    <ValueName>hb_nutzen</ValueName>
+                    <SelectboxOptions>
+                        <Option value="Y" sort="1">Ja</Option>
+                        <Option value="N" sort="2">Nein</Option>
+                    </SelectboxOptions>
+                </Setting>
+                <Setting type="text" initialValue="" sort="2" conf="Y">
+                    <Name>Token</Name>
+                    <Description>AccessToken (Eindeutige Shop-ID)</Description>
+                    <ValueName>hb_token</ValueName>
+                </Setting>
+                <Setting type="zahl" initialValue="24" sort="4" conf="Y">
+                    <Name>Intervall bis zur Aktualisierung (Stunden)</Name>
+                    <Description>In welchem Intervall sollen die Rechtstexte aktualisiert werden? (Zeit in Stunden)</Description>
+                    <ValueName>hb_intervall</ValueName>
+                </Setting>
+            </Settingslink>
+        </Adminmenu>
+    </Install>
+</jtlshop3plugin>

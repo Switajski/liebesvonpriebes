@@ -1,0 +1,257 @@
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "../../base/less/base";
+@import "variables";
+
+// Sandstone 3.3.2
+// Bootswatch
+// -----------------------------------------------------
+
+//import via CDN
+//@import url("//fonts.googleapis.com/css?family=Roboto:400,500");
+//import local files
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url('@{icon-font-path}roboto/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('@{icon-font-path}roboto/Roboto-Medium.ttf') format('truetype');
+}
+
+// Navbar =====================================================================
+
+.sandstone {
+  font-size: 11px;
+  line-height: 22px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.navbar {
+  .nav > li > a {
+    .sandstone;
+  }
+
+  &-form input,
+  &-form .form-control {
+    border: none;
+  }
+}
+
+// Buttons ====================================================================
+
+.btn {
+  border: none;
+  .sandstone;
+
+  &:hover {
+    border-color: transparent;
+  }
+
+  &-lg {
+    line-height: 26px;
+  }
+
+  &-default {
+    &:hover {
+      background-color: @navbar-default-link-active-bg;
+    }
+  }
+}
+
+// Typography =================================================================
+
+// Tables =====================================================================
+
+// Forms ======================================================================
+
+input,
+.form-control {
+  .box-shadow(none);
+
+  &:focus {
+    border-color: @input-border;
+    .box-shadow(none);
+  }
+}
+
+// Navs =======================================================================
+
+.nav {
+  .sandstone;
+
+  .open > a,
+  .open > a:hover,
+  .open > a:focus {
+    border-color: @gray-light;
+  }
+}
+
+.nav-tabs {
+
+  & > li > a {
+    background-color: @gray-lighter;
+    border-color: @nav-tabs-border-color;
+    color: @gray;
+  }
+
+  > li.disabled > a:hover {
+    background-color: @gray-lighter;
+  }
+}
+
+.nav-pills {
+  a {
+    color: @gray;
+  }
+
+  li > a {
+    border: 1px solid transparent;
+  }
+
+  li.active > a,
+  li > a:hover {
+    border-color: @gray-light;
+  }
+
+  li.disabled > a {
+    border-color: transparent;
+  }
+}
+
+.breadcrumb {
+  .sandstone;
+
+  border: 1px solid @gray-light;
+
+  a {
+    color: @gray;
+  }
+}
+
+.pagination {
+  .sandstone;
+}
+
+.pager {
+  .sandstone;
+
+  li > a {
+    color: @gray;
+  }
+}
+
+.dropdown-menu {
+  & > li > a {
+    .sandstone;
+  }
+}
+
+// Indicators =================================================================
+
+.alert {
+
+  a,
+  .alert-link {
+    color: #fff;
+  }
+}
+
+.tooltip {
+  .sandstone;
+}
+
+// Progress bars ==============================================================
+
+.progress {
+  border-radius: 10px;
+  background-color: @gray-light;
+  .box-shadow(none);
+
+  &-bar {
+    .box-shadow(none);
+  }
+}
+
+// Containers =================================================================
+
+.list-group {
+  &-item {
+    padding: 16px 24px;
+  }
+}
+
+.well {
+  .box-shadow(none);
+}
+
+.panel {
+  .box-shadow(none);
+
+  .panel-heading,
+  .panel-title,
+  .panel-footer {
+    .sandstone;
+    color: #fff;
+  }
+
+  &-default {
+    .panel-heading,
+    .panel-title,
+    .panel-footer {
+      color: @gray;
+    }
+  }
+}
+
+// Labels =========================================================
+
+.label{
+  font-size: 85%;
+
+  &.label-default {
+        color: @navbar-inverse-color;
+    }
+}
+
+//
+// Alerts
+// --------------------------------------------------
+
+// Apply the mixin to the alerts
+.alert-success, .bg-success { background: @alert-success-bg; }
+.alert-info, .bg-info       { background: @alert-info-bg; }
+.alert-warning, .bg-warning { background: @alert-warning-bg; }
+.alert-danger, .bg-danger   { background: @alert-danger-bg; }
+
+//
+// Footer
+// --------------------------------------------------
+
+// Padding fix
+.navbar-default .nav > li > a,
+.navbar-inverse .nav > li > a {
+  padding: 21px 15px;
+}
+
+
+#footer {
+    > .container-block, &.container-block {
+       background-color: @navbar-default-bg;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+            color: #fff;
+        }
+    }   
+}
+
+#footer .panel > div > h5,
+#footer .panel .panel-title {
+        border-bottom: 1px dotted #fff;
+    }

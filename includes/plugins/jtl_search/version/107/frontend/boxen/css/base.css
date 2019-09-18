@@ -1,0 +1,110 @@
+/*
+ * Color box
+ */
+.sidebox_content a.color {
+	height: 18px;
+	width: 18px;
+	border: 1px solid #fff;
+	cursor: pointer;
+	display: block;
+}
+
+.sidebox_content div.color:hover {
+	border: 1px solid #75B1D6 !important;
+}
+
+.sidebox_content div.color:hover > a {
+    border: 1px solid #75B1D6 !important;
+}
+
+.sidebox_content div.color {
+	border: 1px solid #999;
+    margin: 4px;
+    float: left;
+}
+
+.sidebox_content div.color.active {
+	border: 1px solid #75B1D6 !important;
+}
+
+.sidebox_content div.color.active > a {
+    border: 1px solid #75B1D6 !important;
+}
+
+.sidebox_content a.color span {
+    display: none;
+}
+	
+.sidebox_content a.red {
+	background-color: #CD3700;
+}
+
+.sidebox_content a.black {
+    background-color: #000;
+}
+
+.sidebox_content a.blue {
+    background-color: #3A5FCD;
+}
+
+.sidebox_content a.brown {
+    background-color: #8B7355;
+}
+
+.sidebox_content a.gray {
+    background-color: #BEBEBE;
+}
+
+.sidebox_content a.green {
+    background-color: #008B00;
+}
+
+.sidebox_content a.orange {
+    background-color: #FF8C00;
+}
+
+.sidebox_content a.violet {
+    background-color: #DDA0DD;
+}
+
+.sidebox_content a.white {
+    background-color: #FFFAF0;
+}
+
+.sidebox_content a.yellow {
+    background-color: #EEDD82;
+}
+
+/*
+ * Tiny box
+ */
+.sidebox_content div.tiny {
+    min-width: 43px;
+    border: 1px solid #CCC;
+    display: block;
+    float: left;   
+    margin: 4px;
+    text-align: center;
+}
+
+.sidebox_content a.tiny {
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 20px;
+    border: 1px solid #fff;
+    background-color: #EEE;
+    text-align: center;
+    min-width: 41px;
+    display: block;
+    padding: 2px;
+}
+
+.sidebox_content a.tiny:hover {
+	background-color: #002740;
+    color: #fff;
+}
+
+.sidebox_content div.tiny > a.tiny.active {
+    background-color: #002740 !important;
+    color: #fff !important;
+}

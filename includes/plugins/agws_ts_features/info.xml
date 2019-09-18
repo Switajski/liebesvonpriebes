@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+    <Name>Trusted Shops</Name>
+    <Description>Installiert das Trustbadge von Trusted Shops</Description>
+    <Author>ag-websolutions.de im Auftrag von Trusted Shops GmbH</Author>
+    <URL>http://ag-websolutions.de</URL>
+    <XMLVersion>102</XMLVersion>
+    <Shop4Version>404</Shop4Version>
+    <PluginID>agws_ts_features</PluginID>
+
+    <Install>
+        <Version nr="100">
+            <CreateDate>2015-03-17</CreateDate>
+			<SQL>agws_ts_features_100.sql</SQL>
+        </Version>
+        <Version nr="200">
+            <CreateDate>2015-03-22</CreateDate>
+            <SQL>agws_ts_features_200.sql</SQL>
+        </Version>
+        <Version nr="201">
+            <CreateDate>2015-05-22</CreateDate>
+        </Version>
+        <Version nr="202">
+            <CreateDate>2015-05-31</CreateDate>
+        </Version>
+        <Version nr="203">
+            <CreateDate>2015-06-13</CreateDate>
+        </Version>
+        <Version nr="400">
+            <CreateDate>2015-10-12</CreateDate>
+            <SQL>agws_ts_features_400.sql</SQL>
+        </Version>
+        <Version nr="401">
+            <CreateDate>2016-03-10</CreateDate>
+        </Version>
+        <Version nr="402">
+            <CreateDate>2016-05-14</CreateDate>
+        </Version>
+        <Version nr="403">
+            <CreateDate>2016-06-30</CreateDate>
+        </Version>
+        <Version nr="404">
+            <CreateDate>2017-08-28</CreateDate>
+            <SQL>agws_ts_features_404.sql</SQL>
+        </Version>
+        <Version nr="405">
+            <CreateDate>2018-02-26</CreateDate>
+        </Version>
+
+        <Hooks>
+            <!-- Hook id="45">agws_ts_features_hook_45.php</Hook -->   <!--HOOK_TOOLSAJAXSERVER_PAGE_TAUSCHEVARIATIONKOMBI-->
+            <Hook id="75">agws_ts_features_hook_75.php</Hook>   <!--HOOK_BESTELLABSCHLUSS_INC_BESTELLUNGINDB-->
+            <Hook id="99">agws_ts_features_hook_99.php</Hook>   <!--HOOK_LETZTERINCLUDE_INC-->
+            <Hook id="140">agws_ts_features_hook_140.php</Hook> <!--HOOK_SMARTY_OUTPUTFILTER-->
+        </Hooks>
+
+        <Boxes>
+            <Box>
+                <Name>Trusted Shops - Reviews</Name>
+                <Available>0</Available>
+                <TemplateFile>agws_ts_features_review_sidebox.tpl</TemplateFile>
+            </Box>
+            <Box>
+                <Name>Trusted Shops - Rating</Name>
+                <Available>0</Available>
+                <TemplateFile>agws_ts_features_rating_sidebox.tpl</TemplateFile>
+            </Box>
+        </Boxes>
+
+        <Adminmenu>
+            <Customlink sort="1">
+                <Name>Konfiguration</Name>
+                <Filename>agws_ts_features_config1.php</Filename>
+            </Customlink>
+            <Customlink sort="2">
+                <Name>Erweiterte Konfiguration</Name>
+                <Filename>agws_ts_features_config2.php</Filename>
+            </Customlink>
+        </Adminmenu>
+
+        <Locales>
+             <Variable>
+                <Name>agws_ts_features_rating_boxtitel</Name>
+                <Description>Titel der Rating-Box</Description>
+                <VariableLocalized iso="GER">Trusted Shops - Rating</VariableLocalized>
+            </Variable>
+            <Variable>
+                <Name>agws_ts_features_review_boxtitel</Name>
+                <Description>Titel der Review-Box</Description>
+                <VariableLocalized iso="GER">Trusted Shops - Reviews</VariableLocalized>
+            </Variable>
+
+        </Locales>
+
+    </Install>
+</jtlshop3plugin>

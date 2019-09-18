@@ -1,0 +1,53 @@
+{
+    "name": "jtl/shop4",
+    "type": "library",
+    "homepage": "http://www.jtl-software.de",
+    "require": {
+        "php": ">=5.4",
+        "imanee/imanee": "dev-master",
+        "ifsnop/mysqldump-php": "^2.1",
+        "symfony/var-dumper": "^3.0",
+        "jtlshop/shop4-systemcheck": "^1.0",
+        "smarty/smarty": "3.1.31",
+        "jdorn/sql-formatter": "^1.2",
+        "andyftw/ssllabs-php": "^1.2",
+        "phpmyadmin/sql-parser": "^3.4",
+        "phpgangsta/googleauthenticator": "dev-master",
+        "phpmailer/phpmailer": "^6.0",
+        "jtlshop/qrcodegenerator": "dev-master",
+        "erusev/parsedown": "dev-master",
+        "paragonie/random_compat": "~2.0",
+        "studio-42/elfinder": "^2.1"
+    },
+    "require_dev": {
+        "phpunit/php-token-stream": "~1.2",
+        "nikic/php-parser": "^2.1",
+        "Symfony/Finder": "^2.8"
+    },
+    "config": {
+        "platform": {
+            "php": "5.6"
+        }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jtlshop/shop4-systemcheck",
+                "version": "1.1.0",
+                "source": {
+                    "url": "https://gitlab.com/jtl-software/jtl-shop/tools/systemcheck.git",
+                    "type": "git",
+                    "reference": "1.1.0"
+                }
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "https://gitlab.com/jtl-software/jtl-shop/tools/qrcodegenerator.git"
+        }
+    ],
+    "autoload": {
+        "files": [ "vendor/jtlshop/shop4-systemcheck/lib/bootstrap.php" ]
+    }
+}

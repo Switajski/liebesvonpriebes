@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+	<Name>JTL Frontpage Categories</Name>
+	<Description>Bestimmt, welche Kategorien auf der Startseite angezeigt werden.</Description>
+	<Author>JTL-Software-GmbH</Author>
+	<URL>http://www.jtl-software.de</URL>
+	<XMLVersion>102</XMLVersion>
+	<Shop4Version>400</Shop4Version>
+	<PluginID>jtl_startcats</PluginID>
+	<Install>
+		<Version nr="100">
+			<CreateDate>2011-07-20</CreateDate>
+		</Version>
+		<Version nr="101">
+			<CreateDate>2011-07-25</CreateDate>
+		</Version>
+		<Version nr="102">
+			<CreateDate>2011-10-06</CreateDate>
+		</Version>
+		<Version nr="103">
+			<CreateDate>2015-01-07</CreateDate>
+		</Version>
+		<Hooks>
+			<Hook id="140">startcats.php</Hook>
+		</Hooks>
+		<Adminmenu>
+			<Settingslink sort="1">
+				<Name>Einstellungen</Name>
+				<Setting type="text" initialValue="Y" sort="1" conf="N">
+					<Name>Startkategorien</Name>
+					<Description></Description>
+					<ValueName>jtl_startcats_headline</ValueName>
+				</Setting>
+				<Setting type="selectbox" initialValue="Y" sort="2" conf="Y">
+					<Name>Startkategorien aktivieren</Name>
+					<Description>Sollen die in der Wawi für die Startseite markierten Kategorien aktiviert werden?</Description>
+					<ValueName>jtl_startcats_aktiv</ValueName>
+					<SelectboxOptions>
+						<Option value="Y" sort="1">Ja</Option>
+						<Option value="N" sort="2">Nein</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="selectbox" initialValue="slider" sort="3" conf="Y">
+					<Name>Darstellungstyp</Name>
+					<Description>In welcher Form sollen die Kategorien dargestellt werden?</Description>
+					<ValueName>jtl_startcats_type</ValueName>
+					<SelectboxOptions>
+						<Option value="slider" sort="1">Slider</Option>
+						<Option value="list" sort="2">Liste</Option>
+					</SelectboxOptions>
+				</Setting>
+				<Setting type="zahl" initialValue="3" sort="4" conf="Y">
+					<Name>Anzahl Kategorien nebeneinander</Name>
+					<Description>Wieviele Kategorien sollen auf der Startseite nebeneinander angezeigt werden?</Description>
+					<ValueName>jtl_startcats_catsperrow</ValueName>
+				</Setting>
+				<Setting type="text" initialValue="#content" sort="5" conf="Y">
+					<Name>PHPQuery Startkategorie Selector</Name>
+					<Description>Welches HTML Objekt soll als Startkategorie Selector dienen? (Standard: #content)</Description>
+					<ValueName>jtl_startcats_selector</ValueName>
+				</Setting>
+				<Setting type="selectbox" initialValue="append" sort="6" conf="Y">
+					<Name>PHP Query Funktion</Name>
+					<Description>Welche Funktion soll verwendet werden, um die Boxen hinzuzufügen?</Description>
+					<ValueName>jtl_startcats_function</ValueName>
+					<SelectboxOptions>
+						<Option value="append" sort="1">append() - Als als letztes Kind in Selektor einfügen</Option>
+						<Option value="prepend" sort="2">prepend() - Als erstes Kind in Selektor einfügen</Option>
+						<Option value="after" sort="3">after() - Nach Selektor einfügen</Option>
+						<Option value="before" sort="4">before() - Vor Selektor einfügen</Option>
+						<Option value="replaceWith" sort="4">replaceWith() - Selektor durch Menu ersetzen</Option>
+					</SelectboxOptions>
+				</Setting>
+			</Settingslink>
+		</Adminmenu>
+		<Locales>
+			<Variable>
+				<Name>jtl_startcats_title</Name>
+				<Description>Wie soll die Überschrift der Kategorienbox auf der Startseite lauten?</Description>
+				<VariableLocalized iso="GER">Startkategorien</VariableLocalized>
+				<VariableLocalized iso="ENG">Startcategories</VariableLocalized>
+			</Variable>
+		</Locales>
+	</Install>
+</jtlshop3plugin>

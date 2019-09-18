@@ -1,0 +1,47 @@
+#table_last_orders td:hover {
+	cursor: pointer;
+}
+
+.last_order_hidden {
+	display: none;
+}
+
+.last_order_wrapper {
+	margin: 0 auto;
+}
+
+.last_order {
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-color: #F0F0F0;
+    padding: 5px;
+}
+
+.last_order_wrapper h3 {
+   margin-top: 0 !important;
+}
+
+.last_order ul {
+    list-style: none;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 1px;
+    padding: 0;
+}
+
+.last_order li {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+}
+
+.last_order li:first-child {
+    text-align: left;
+    width: 230px;
+}
+
+.last_order li:last-child {
+    text-align: right;
+    width: 220px;
+}

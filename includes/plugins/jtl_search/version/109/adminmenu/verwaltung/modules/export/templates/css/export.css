@@ -1,0 +1,10 @@
+#outputDIV {
+	margin-top:       10px;
+}
+
+.jtlsearch_change_dialog_bottom {
+	width:      90%;
+	text-align: right;
+	position:   absolute;
+	bottom:     5px;
+}

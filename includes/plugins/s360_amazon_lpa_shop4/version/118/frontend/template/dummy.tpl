@@ -1,0 +1,1 @@
+{* This file is never rendered, but a tpl file must be set for frontend links. *}

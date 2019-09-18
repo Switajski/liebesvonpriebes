@@ -1,0 +1,1278 @@
+/* 
+/* 
+default.css für JTL Shop2 Backend
+http://www.jtl-software.de
+Copyright (c) 2009 JTL-Software
+*/
+
+h1.txtBlack  {color:#000;}
+hr{
+ border: 0px; /* Für Firefox und Opera */
+ border-top:1px solid #ccc;
+ border-bottom:1px solid #fff; /* Für I.Explorer (Seiten-Hintergrundfarbe!) */
+}
+
+blockquote .instructions {
+}
+code {font-size:11px;}
+ul {list-style:none;}
+
+ul li {list-style:none;}
+
+.clearer {clear:both;}
+
+.warning {color:#c00;}
+
+.clearer {height:0; margin:0; padding:0;}
+.smallfont{font-size:10px;}
+/* Boxed Style */
+.boxed {
+}
+
+.boxed .title {
+	padding: 10px 15px;
+	background: #3B3B3B;
+	text-transform: uppercase;
+	font: bold .77em Verdana,Arial,sans-serif;
+	color: #000;
+}
+
+.boxed .content {
+	padding: 15px;
+}
+
+.boxed ul {
+	list-style: none;
+}
+
+/* Post */
+.post-1 {
+	clear: both;
+	padding: 10px;
+}
+.post {
+	clear: both;
+	padding: 10px;
+	border-bottom: 1px solid #3B3B3B;
+}
+
+.post .content {
+	line-height: normal;
+}
+
+.post .title {
+	margin-bottom: 20px;
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	
+}
+
+#welcome h2.title,#welcome h1.title {text-shadow:2px 2px #ccc;}
+
+.post p, .post blockquote, .post ul, .post ol {
+	margin-bottom: 1em;
+}
+
+.post blockquote, .post ol {
+	border:1px solid #3B3B3B;
+	margin-left: 3em;
+	background:#fafad5;
+	padding:5px;
+}
+
+#shadow {
+	width: 100%;
+	height: 7px;
+	background: #fff url(../gfx/shadow.png) repeat-x;
+}
+
+/* Page */
+#page {
+margin:0 auto;
+padding: 0 0 15px;
+width:100%;
+}
+
+#login_frame {
+width: 345px;
+margin:45px auto 0 auto;
+}
+
+#login_logo {
+width:100%;
+background: url(../gfx/shop3-login.png) no-repeat;
+height: 50px;
+}
+
+#login_outer {
+margin: 0;
+padding: 20px;
+border: 1px solid #eee;
+background-color: #fbfbfb;
+color: #8a8a8a;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+border-radius: 8px;
+}
+
+#login_outer label.left {
+float:left;
+text-align:right; 
+width:115px; 
+margin:0; 
+padding:5px 5px 5px 0; 
+font-size:1.0em;
+}
+/* IE FIX 3-Pixel-Textsprung */
+* html #login_outer { height: 1%; }
+/* ende */
+
+
+#login_outer input[type="text"],
+#login_outer input[type="password"] {
+font-size: 19px;
+width: 97%;
+padding: 3px;
+margin-top: 2px;
+margin-bottom: 16px;
+border: 1px solid #e5e5e5;
+background: #fff;
+}
+
+.updateMessage{
+color:#C30;
+font-weight:700;
+}
+
+
+
+/* Menu 
+#menu {
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	display: block;
+	padding:7px 5px;
+	border-bottom: 1px solid #FFFFFF;
+	text-decoration: none;
+	color: #3B3B3B;
+}
+
+#menu a:hover {
+	background: #000;
+	color: #FFFFFF;
+}
+
+#menu .active a {
+	background: #92B0CE;
+	color: #000;
+}
+
+#menu .linkgruppeName {
+	background:#92B0CE url(../gfx/th_bg.png) repeat-x;
+	color: #FFF;
+	display: block;
+	font-weight:700;
+	height:14px;
+	padding: 7px 5px;
+	border-bottom: 1px solid #3B3B3B;
+	text-decoration: none;	
+}
+*/
+
+/* Updates */
+#updates {
+}
+
+#updates ul {
+}
+
+#updates li {
+	margin-bottom: 20px;
+}
+
+#updates h3 {
+	font-size: .77em;
+}
+
+/* Footer */
+
+#footer {
+	width:100%;
+	height: 16px;
+	margin: 0 auto;
+	padding:5px 0 0;
+	background: #3B3B3B;
+	font-size: .77em;
+	color: #000;
+	bottom:0;
+}
+
+#legal {
+	float: left;
+	padding:0 0 0 15px;
+}
+#legal a,#links a {color:000; text-decoration:none;}
+#legal a:hover,#links a:hover {color:#ededed; text-decoration:underline;}
+
+#links {
+color:#000;
+float:right;
+padding-right:1em;
+}
+
+#newLinkGroup {
+background:#ededed;
+border:1px solid #B3B3B3;
+font-weight:700;
+height:18px;
+padding:5px;
+width:190px;
+}
+#newLinkGroup:hover {
+color:#000; 
+border:1px solid #b3b3b3; 
+padding:5px;
+text-decoration: underline;
+}
+#LinkGroup th a {color:#000;text-decoration:none;}
+#LinkGroup th a:hover {color:#000; text-decoration:underline;}
+
+#agb_wrb {text-align:center;}
+
+/* Externe URL´s */
+a.externURL {
+background-image:url(../gfx/extern.png);
+background-position:right center;
+background-repeat:no-repeat;
+margin-right:3px;
+padding-right:13px;
+text-decoration:none;
+}
+
+/*.externURL:hover {*/
+/*background-image:url(../gfx/externHover.png);*/
+/*background-position:right center;*/
+/*background-repeat:no-repeat;*/
+/*text-decoration:none;*/
+/*}*/
+
+#error1 {
+	display: block;
+	color: #C00;
+	background-color:#fbd2d2;
+	padding:5px 0 15px 15px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	border: 1px dashed #C00;
+	  
+}
+#error1 img { vertical-align:middle; }
+
+#error1 .meldung { 
+	color:#C00;
+	font-family:"Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	text-align:left;
+	font-size:1em;
+}
+
+#error1 .meldung1 { text-align:center; }
+
+/* Versand Länder Auswahl */
+#countries { 
+margin: 0; 
+padding: 0; 
+text-align:center; 
+} 
+#countries ul, #countries li { 
+margin: 0; 
+padding: 0; 
+display: inline; 
+list-style-type: none; 
+} 
+#countries a:link, #countries a:visited { 
+background-color:#000;
+border-right:1px solid #000;
+color:#fff;
+float:left;
+font-size:0.8em;
+font-weight:bold;
+line-height:20px;
+margin:0;
+padding:2px 5px;
+text-decoration:none;
+white-space:nowrap;
+}  
+#countries a:hover {color: #000; background-color: #6297ca;} 
+
+/* update Infos */
+p.updateLeft,p.updateLeft-1,p.updateLeft-2,p.updateLeft-3,p.updateLeft-4,p.updateLeft-5,p.updateLeft-6,p.updateLeft-7 {
+float:left;
+padding:0 10px 0 0;
+text-align:right;
+width:25em;
+}
+p.updateRight,p.updateRight-1,p.updateRight-2,p.updateRight-3,p.updateRight-4,p.updateRight-5,p.updateRight-6,p.updateRight-7 {
+float:left;
+width:30em;
+}
+
+/* entwicklung Infos */
+p.deploymentLeft,p.deploymentLeft-1,p.deploymentLeft-2,p.deploymentLeft-3 {
+float:left;
+padding:0 10px 0 0;
+text-align:right;
+width:18em;
+}
+p.deploymentRight,p.deploymentRight-1,p.deploymentRight-2,p.deploymentRight-3 {
+float:left;
+margin:2px 0;
+width:40em;
+}
+
+/* blätterfunktion */
+.pagesBottom {
+font-size:1em;
+height:32px;
+margin:10px 0 20px;
+overflow:auto;
+padding:5px 0;
+white-space:nowrap;
+}
+
+.pagesBottom a,.pagesBottom span {
+background:url(../gfx/linkBox.png) #FFF repeat-x;
+border:1px solid #999;
+color:#000;
+font-size:0.75em;
+padding:1px 3px;
+text-decoration:none !important;
+}
+
+.pagesBottom a:hover {
+background:url(../gfx/linkBoxHover.png) #7ea7bf repeat-x;
+background-color:#FFF;
+}
+
+.pagesBottom span {
+background:url(../gfx/linkBoxHover.png) #FFF repeat-x !important;
+border:1px solid #0997de;
+color:#222;
+font-weight:700;
+}
+
+
+/* Sitemap */
+#sitemapBackendContent {
+float:none;
+line-height:9pt;
+}
+* html #sitemapBackendContent { line-height:11pt;}
+*:first-child+html #sitemapBackendContent {line-height:11pt;}
+#sitemapBackendContent ul {
+background:#FFF;
+border:1px solid #3B3B3B;
+float:left;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0 20px 10px 0;
+min-height:0;
+padding:0;
+width:30%;
+}
+#sitemapBackendContent ul li h4{ 
+background:#92B0CE url(../gfx/th_bg.png) repeat-x;
+border-bottom:1px solid #3B3B3B;
+color:#000;
+font-size:1em;
+height:18px;
+padding:5px 0 5px 3px;
+}
+#sitemapBackendContent .linkgruppeSitemap .linkgruppeNameSitemap { margin:0; padding:0;}
+
+#sitemapBackendContent .linkgruppeSitemap li{
+margin-bottom:5px;
+padding:2px 0 0 5px;
+white-space:nowrap;
+}
+#sitemapBackendContent .linkgruppeSitemap li.linkSektionSitemap{
+font-size:0.85em;
+padding:2px 0 0 18px;
+white-space:nowrap;
+line-height:7pt;
+}
+
+/* Thumbnail */
+
+.thumbnail{
+position: relative;
+z-index: 0;
+}
+
+.thumbnail:hover{
+background-color: transparent;
+z-index: 5;
+}
+
+.thumbnail span{
+background:#f7f7f7;
+position: absolute;
+padding: 5px;
+left: -10px;
+border: 1px solid #3b3b3b;
+visibility: hidden;
+color: black;
+text-decoration: none;
+}
+
+.thumbnail span img{
+border-width: 0;
+padding: 5px;
+}
+
+.thumbnail:hover span{
+visibility: visible;
+top: 0;
+left: 20px;
+}
+
+.linksPicRow1 { text-align: right; }
+.linksPicRow2 { padding-left: 10px;}
+
+div.freqbar {
+	border: 1px solid #d16f00;
+	margin-right: -6px;
+	background: transparent url('../gfx/layout/statBarOrange.png') repeat-x top left;
+}
+
+#einstellungSuche {
+	border: 1px solid #EEEEEE;
+	width: 50%;
+	height: 45px;
+	padding: 5px;
+	text-align: center;
+	margin-left: 25%;
+}
+
+.suchTrefferEinstellungen {
+	background-color: #FFFF00;
+}
+
+ul.templates {
+   margin: 4px;
+   list-style-type: none;
+}
+
+ul.templates li {
+   float: left;
+   width: 99%;
+   text-align: left;
+   margin: 0 0 15px 0;
+	background-color: #fafafa;
+	padding: 5px;
+}
+
+ul.templates li.active {
+	background-color: #fff7c2;
+}
+
+ul.templates li div.img{
+	float: left;
+	width: 300px;
+}
+
+ul.templates li p.button {
+	margin: 10px 0;
+}
+
+ul.templates li div.desc{
+	overflow: hidden;
+	padding: 10px;
+}
+
+ul.templates li h1 {
+   font-size: 18px;
+   margin: 0 0 8px 0;
+   color: #666;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#LinkGroup td {
+border:solid 1px #ccc;
+width:auto;
+font:normal 1em Verdana, Arial, Helvetica, sans-serif;
+padding:0;
+}
+#LinkGroup td.linkTemplateName { background:#ddd;border:none;padding:5px;text-align:left;}
+#LinkGroup td.linkName {padding:5px;text-align:left;width:600px;}
+#LinkGroup td.linkNamePlugin {background-color: #FF8A05; padding:5px;text-align:left;width:600px;}
+#LinkGroup td.modify {padding:5px;text-align:center;}
+#LinkGroup td.delete {padding:5px;text-align:center;}
+#LinkGroup th.th-1 {background:#f0f0f0 url(../gfx/th_bg.png) repeat-x;border:1px solid #CCC;color:#000;height:28px;padding:5px;white-space:nowrap;width:600px; text-align:left;}
+#LinkGroup th.th-2 {background:#f0f0f0 url(../gfx/th_bg.png) repeat-x;border:1px solid #CCC;color:#000;height:28px;padding:5px;white-space:nowrap;}
+#LinkGroup th.th-3 {background:#f0f0f0 url(../gfx/th_bg.png) repeat-x;border:1px solid #CCC;color:#000;height:28px;padding:5px;white-space:nowrap;}
+#LinkGroup th.th-4 {background:#f0f0f0 url(../gfx/th_bg.png) repeat-x;border:1px solid #CCC;color:#000;height:28px;padding:5px;white-space:nowrap;}
+#versand label.cke_top {height:30px;line-height:30px;margin:0;padding:5px 0;}
+
+/* IE 7 Fix */
+*:first-child+html #LinkGroup th.th-1 {height:18px;}
+*:first-child+html #LinkGroup th.th-2 {height:18px;}
+*:first-child+html #LinkGroup th.th-3 {height:18px;}
+*:first-child+html #LinkGroup th.th-4 {height:18px;}
+
+/* IE 6 Fix */
+* html #LinkGroup th.th-1 {height:18px;}
+* html #LinkGroup th.th-2 {height:18px;}
+* html #LinkGroup th.th-3 {height:18px;}
+* html #LinkGroup th.th-4 {height:18px;}
+
+#tableCountries table { float:left;margin:20px 0}
+#tableCountries td {
+border: none;
+width:auto;
+font:normal 1em Verdana, Arial, Helvetica, sans-serif;
+padding:5px;
+}
+#shopinfoExport .TD1 { width:50%;font-weight:bold; font-size:0.95em;text-align:left;}
+#shopinfoExport .TD1 p.smallfont {font-weight:normal;font-size:0.75em; margin-top:5px;text-align:left;}
+#shopinfoExport span.smallfont {font-weight:normal;font-size:0.75em;text-align:left;}
+#shopinfoExport .TD2 { width:50%;vertical-align:top;text-align:left;}
+#shopinfoExport .TD2 .TD1-a,#shopinfoExport .TD2 .TD2-a {border:none;padding:5px 0 0;text-align:left;}
+
+/* Statistik */
+#statisticTable {margin:20px 0;}
+
+#statisticTable th {
+background:#6e8ea1 url(../gfx/th_stats.png) repeat-x;
+border:1px solid #CCC;
+color:#000;
+height:18px;
+padding:3px;
+white-space:nowrap;
+width:auto;
+}
+/* IE 7 Fix */
+*:first-child+html #statisticTable th {height:12px;}
+/* IE 6 Fix */
+* html #statisticTable th {height:12px;}
+
+#statisticTable th.th-1{font-size:0.75em; width: 15%}
+#statisticTable th.th-2{font-size:0.75em;}
+#statisticTable th.th-3{font-size:0.75em;}
+#statisticTable th.th-4{font-size:0.75em;}
+#statisticTable th.th-5{font-size:0.75em;}
+#statisticTable th.th-6{font-size:0.75em;}
+#statisticTable th.th-7{font-size:0.75em;}
+#statisticTable th.th-8{font-size:0.75em;}
+#statisticTable th.th-9{font-size:0.75em;}
+
+#statisticTable .TD1 {font-size:0.75em;text-align:left; width: 15%}
+#statisticTable .TD2 {font-size:0.75em;text-align:left;}
+#statisticTable .TD3 {font-size:0.75em;text-align:center;}
+#statisticTable .TD4 {font-size:0.75em;text-align:left;}
+#statisticTable .TD5 {font-size:0.75em;text-align:left;}
+#statisticTable .TD6 {font-size:0.75em;text-align:center;}
+#statisticTable .TD7 {font-size:0.75em;text-align:center;}
+#statisticTable .TD8 {font-size:0.75em;text-align:center;}
+#statisticTable .TD9 {font-size:0.75em;text-align:center;}
+#statisticTable td {border:solid 1px #ccc;width:auto;font:normal 0.75em Verdana, Arial, Helvetica, sans-serif;padding:3px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+form_elements.css für JTL Shop2 Backend
+http://www.jtl-software.de
+Copyright (c) 2009 JTL-Software
+
+*/
+#einstellungSuche input.field {
+width:250px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+input.fieldOther {
+border:1px solid #ccc;
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif;
+font-size:1em;
+margin:2px;
+padding:2px;
+}
+
+#payment label.left {
+float:left;
+text-align:right; 
+width:300px; 
+margin:0; 
+padding:2px 10px 10px 0; 
+font-size:1.0em;
+}
+
+#payment select.combo {
+width:300px; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+/* IE FIX 3-Pixel-Textsprung */
+* html #payment { height: 1%; }
+/* ende */
+
+#payment input.field {
+width:300px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+#example input.fieldfillout {
+	width:300px; 
+	padding:2px; 
+	margin:2px; 
+	border:solid 1px #ccc; 
+	font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+	font-size:1.0em;
+	border: 1px solid red;
+}
+
+#example select.fieldfillout {
+	width:300px; 
+	padding:2px; 
+	margin:0; 
+	border:solid 1px #ccc; 
+	font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+	font-size:1.0em;
+	border: 1px solid red;
+}
+
+div.fieldfillout {
+	border: 1px solid red;
+    padding: 2px;
+    width: 600px;
+}
+
+#example .fillout { 
+	color: red; 
+	font-weight: bold;
+}
+
+#payment input.checkfield,#payment-1 input.checkfield,#versand input.checkfield,#versand-1 input.checkfield {
+width:30px; 
+padding:2px; 
+margin:2px; 
+border: none; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+text-align:left;
+height:18px;
+width:18px;
+}
+#payment input.fieldCaptcha {
+width:60px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+/* IE FIX 3-Pixel-Textsprung */
+* html input { height: 1%; }
+/* ende */
+
+#payment textarea {
+	background:#FFF;
+	width:350px;
+	height:300px;
+	padding:2px; 
+	margin:2px; 
+	border:solid 1px #ccc; 
+	font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+	font-size:1.0em;
+}
+
+textarea.description {
+    background: #FFF;
+	width: 450px !important;
+	height: 200px !important;
+	border: solid 1px #ccc; 
+	font-family: "Lucida Sans Unicode",verdana,arial,sans-serif; 
+	font-size: 1.0em;
+}
+
+#payment p {margin-bottom:15px;}
+ /* IE FIX */
+* html #payment p {margin-bottom:20px;}
+*:first-child+html #payment p {margin-bottom:15px;} 
+ 
+.boxen #payment #ini {
+width:30px;
+margin-bottom:0; 
+}
+
+#payment #vergabetext {
+ border: solid 2px #990000;
+}
+
+#payment span.smallfont {
+ font-family:Geneva, Arial, Helvetica, sans-serif;
+ font-size:0.8em;
+ color:#666;
+ text-align:left;
+}
+
+#payment .smallfont span  {
+ margin-top:0;
+ padding:0;
+}
+
+#payment-1 label.left {
+float:left;
+text-align:right; 
+width:300px; 
+margin:0; 
+padding:2px 10px 10px 0; 
+font-size:1.0em;
+}
+
+#payment-1 select.combo {
+width:200px; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+/* IE FIX 3-Pixel-Textsprung */
+* html #payment { height: 1%; }
+/* ende */
+
+#payment-1 input.field {
+width:300px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+#payment-1 input.fieldCaptcha {
+width:60px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+/* IE FIX 3-Pixel-Textsprung */
+* html input { height: 1%; }
+/* ende */
+
+#payment-1 textarea {
+background:#FAFAFA;
+width:275px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+#payment-1 p {margin-bottom:15px;}
+ /* IE FIX */
+* html #payment-1 p {margin-bottom:20px;}
+*:first-child+html #payment-1 p {margin-bottom:15px;} 
+
+.boxen #payment-1 #ini {
+width:30px;
+margin-bottom:0; 
+}
+
+#payment-1 #vergabetext {
+ border: solid 2px #990000;
+}
+
+#payment-1 span.smallfont {
+ font-family:Geneva, Arial, Helvetica, sans-serif;
+ font-size:0.8em;
+ color:#666;
+ text-align:left;
+}
+
+#payment-1 .smallfont span  {
+ margin-top:0;
+ padding:0;
+}
+
+#payment-2 label.left {
+float:left;
+text-align:right; 
+width:450px; 
+margin:0; 
+padding:2px 5px 10px 0; 
+font-size:0.85em;
+}
+
+#payment-2 select.combo {
+width:308px; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+/* IE FIX 3-Pixel-Textsprung */
+* html #payment-2 { height: 1%; }
+/* ende */
+
+#payment-2 input.field {
+width:300px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+#payment-2 input.fieldCaptcha {
+width:60px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+/* IE FIX 3-Pixel-Textsprung */
+* html input#payment-2 { height: 1%; }
+/* ende */
+
+#payment-2 textarea {
+background:#FAFAFA;
+width:275px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+#payment-2 p {margin-bottom:15px;}
+ /* IE FIX */
+* html #payment-2 p {margin-bottom:20px;}
+*:first-child+html #payment-2 p {margin-bottom:15px;} 
+
+.boxen #payment-2 #ini {
+width:30px;
+margin-bottom:0; 
+}
+
+#payment-2 #vergabetext {
+ border: solid 2px #990000;
+}
+
+#payment-2 span.smallfont {
+ font-family:Geneva, Arial, Helvetica, sans-serif;
+ font-size:0.8em;
+ color:#666;
+ text-align:left;
+}
+
+#payment-2 .smallfont span  {
+ margin-top:0;
+ padding:0;
+}
+
+#versand label.left,#versand-1 label.left {
+float:left;
+text-align:right; 
+width:350px; 
+margin:0; 
+padding:2px 10px 10px 0; 
+font-size:1.0em;
+}
+
+.newsletter tr {
+	padding:2px 10px 10px 0;
+}
+
+.newsletter td {
+	padding: 5px;
+}
+
+.newsletter td.left {
+	width: 30%;
+	vertical-align: top;
+}
+
+.newsletter select.combo {
+	width:300px; 
+	padding:2px; 
+	margin:0; 
+	border:solid 1px #ccc; 
+	font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+	font-size:1.0em;
+}
+
+.newsletter input.field {
+	width:300px; 
+	padding:2px; 
+	margin:2px; 
+	border:solid 1px #ccc; 
+	font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+	font-size:1.0em;
+}
+
+.kundenfeld tr {
+	padding:2px 10px 10px 0;
+}
+
+.kundenfeld td {
+	padding: 5px;
+}
+
+.kundenfeld td.left {
+	width: 30%;
+	vertical-align: top;
+}
+
+.kundenfeld select.combo {
+	width:300px; 
+	padding:2px; 
+	margin:0; 
+	border:solid 1px #ccc; 
+	font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+	font-size:1.0em;
+}
+
+.kundenfeld input.field {
+	width:300px; 
+	padding:2px; 
+	margin:0px; 
+	border:solid 1px #ccc; 
+	font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+	font-size:1.0em;
+}
+
+.kundenfeld input.button {
+	padding: 0px;
+	margin: 0px;
+}
+
+#versand label.left_checkbox,#versand-1 label.left_checkbox {
+float:left;
+text-align:right; 
+width:350px; 
+margin:0; 
+padding:2px 5px 10px 0; 
+font-size:1.0em;
+}
+
+#versand select.combo,#versand-1 select.combo {
+width:200px; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+#versand select.comboFullSize {
+width:auto; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+/* IE FIX 3-Pixel-Textsprung */
+* html #versand,* html #versand-1 { height: 1%; }
+/* ende */
+
+#versand input.field,#versand-1 input.field {
+width:300px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+* html #versand input.field,* html #versand-1 input.field { height: 1%; }
+
+#versand p,#versand-1 p {margin-bottom:15px;}
+ /* IE FIX */
+* html #versand p,* html #versand-1 p {margin-bottom:20px;}
+*:first-child+html #versand p,*:first-child+html #versand-1 p {margin-bottom:15px;} 
+
+#versand .boxen, #versand-1 .boxen,#tableCountries .boxen {
+margin-bottom:0;
+vertical-align:middle;
+width:18px;
+height:18px
+}
+
+#versand #vergabetext,#versand-1 #vergabetext {
+	border: solid 2px #990000;
+}
+
+#versand span.smallfont,#versand-1 span.smallfont {
+ font-family:Geneva, Arial, Helvetica, sans-serif;
+ font-size:0.8em;
+ color:#666;
+ text-align:left;
+}
+
+#versand .smallfont span,#versand-1 .smallfont span {
+ margin-top:0;
+ padding:0;
+}
+
+#tabellenPreisanzeige select.combo-1 {
+width:200px; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+#tabellenPreisanzeige select.combo-2,#tabellenPreisanzeige select.combo-3,#bewertungen select.combo-2 {
+width:60px; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+#kupon select.combo {
+width:200px; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+#shopinfoExport input.field,#content input.field {
+width:300px; 
+padding:2px; 
+margin:2px; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+select.selectBox {
+width:200px; 
+padding:2px; 
+margin:0; 
+border:solid 1px #ccc; 
+font-family:"Lucida Sans Unicode",verdana,arial,sans-serif; 
+font-size:1.0em;
+}
+
+/* FileCheck */
+#pageCheck {
+   width: 950px;
+   margin: 0 auto;
+   padding: 0 10px;
+   text-align: center;
+   background-color: #fff;
+}
+
+#headerCheck {
+    text-align: left;
+}
+
+#headerCheck h1 {
+    float: none !important;    
+}
+
+#contentCheck {
+    margin: 10px auto;
+    text-align: left;    
+}
+
+#contentCheck .req li {
+    width: 100%;
+    line-height: 22px;
+    margin: 1px 0;
+    position: relative;
+}
+
+#contentCheck .req li.mod0:hover,
+#contentCheck req li.mod1:hover {
+    background-color: #e4e4e4;
+}
+
+#contentCheck .req li.mod0 {
+    background-color: #fcfcfc;
+}
+
+#contentCheck .req li.mod1 {
+    background-color: #f7f7f7;
+}
+
+#contentCheck .req li span {
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+
+#contentCheck ul {
+    list-style-type: none;
+}
+
+#contentCheck ul.hlist {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+#contentCheck .green {
+   display: inline-block;
+   padding: 0.25em 0.5em;
+   margin: 1px;
+   
+   color: #fff;
+   font-weight: bold;
+   background-color: #4d951c;
+   
+   border-radius: 8px;
+   -moz-border-radius: 8px;
+   -webkit-border-radius: 8px;
+   -khtml-border-radius: 8px;
+   font-size: 0.9em;
+   height: 16px;
+   line-height: 16px;
+}
+
+#contentCheck .red {  
+   display: inline-block;
+   padding: 0.25em 0.5em;
+   margin: 1px;
+   
+   color: #fff;
+   font-weight: bold;
+   background-color: #b70004;
+   
+   border-radius: 8px;
+   -moz-border-radius: 8px;
+   -webkit-border-radius: 8px;
+   -khtml-border-radius: 8px;
+   height: 16px;
+   line-height: 16px;
+}
+
+/* IE FIX 3-Pixel-Textsprung */
+* html #payment { height: 1%; }
+/* ende */

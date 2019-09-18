@@ -1,0 +1,182 @@
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "../../base/less/base";
+@import "variables";
+
+// Simplex 3.3.2
+// Bootswatch
+// -----------------------------------------------------
+
+//import via CDN
+//@import url("//fonts.googleapis.com/css?family=Open+Sans:400,700");
+//import local files
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans-Regular'), url('@{icon-font-path}/opensans/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('@{icon-font-path}/opensans/OpenSans-Bold.ttf') format('truetype');
+}
+
+.btn-shadow(@color) {
+  #gradient > .vertical-three-colors(lighten(@color, 3%), @color, 6%, darken(@color, 3%));
+  filter: none;
+  border: 1px solid darken(@color, 10%);
+}
+
+// Navbar =====================================================================
+
+.navbar {
+
+  &-inverse {
+
+    .badge {
+      background-color: #fff;
+      color: @brand-primary;
+    }
+  }
+}
+
+// Buttons ====================================================================
+
+.btn {
+  font-family: @headings-font-family;
+}
+
+.btn-default,
+.btn-default:hover {
+  .btn-shadow(@btn-default-bg);
+}
+
+.btn-primary,
+.btn-primary:hover {
+  .btn-shadow(@btn-primary-bg);
+}
+
+.btn-success,
+.btn-success:hover {
+  .btn-shadow(@btn-success-bg);
+}
+
+.btn-info,
+.btn-info:hover {
+  .btn-shadow(@btn-info-bg);
+}
+
+.btn-warning,
+.btn-warning:hover {
+  .btn-shadow(@btn-warning-bg);
+}
+
+.btn-danger,
+.btn-danger:hover {
+  .btn-shadow(@btn-danger-bg);
+}
+
+// Typography =================================================================
+
+body {
+  font-weight: 200;
+}
+
+// Tables =====================================================================
+
+th {
+  color: @headings-color;
+}
+
+// Forms ======================================================================
+
+legend {
+  color: @headings-color;
+}
+
+label {
+  font-weight: normal;
+}
+
+.has-warning {
+  .help-block,
+  .control-label {
+    color: @brand-danger;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: @brand-danger;
+  }
+}
+
+.has-error {
+  .help-block,
+  .control-label {
+    color: @brand-primary;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: @brand-primary;
+  }
+}
+
+.has-success {
+  .help-block,
+  .control-label {
+    color: @brand-success;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: @brand-success;
+  }
+}
+
+// Navs =======================================================================
+
+.pager {
+  a {
+    color: @headings-color;
+  }
+
+  a:hover,
+  .active > a {
+    border-color: @brand-primary;
+    color: #fff;
+  }
+
+  .disabled > a {
+    border-color: @pager-border;
+  }
+}
+
+//
+// Footer
+// --------------------------------------------------
+
+// Padding fix
+.navbar-default .nav > li > a,
+.navbar-inverse .nav > li > a {
+  padding: 21px 15px;
+}
+
+
+#footer {
+    > .container-block, &.container-block {
+       background-color: @gray-dark;
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+            color: #fff;
+        }
+    }   
+}
+
+#footer .panel > div > h5,
+#footer .panel .panel-title {
+        border-bottom: 1px dotted #fff;
+    }

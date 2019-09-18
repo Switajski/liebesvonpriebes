@@ -1,0 +1,2 @@
+ALTER TABLE `xplugin_jtl_haendlerbund_tupdate` ADD  `dVersuch` DATETIME NOT NULL;
+INSERT INTO `xplugin_jtl_haendlerbund_tupdate` (`kUpdate`,`cType`,`cFormat`,`nAktiv`,`nVersuch`,`dAktualisiert`,`dVersuch`) VALUES (7,'134CBB4D101','html',1,0,'0000-00-00 00:00:00','0000-00-00 00:00:00');

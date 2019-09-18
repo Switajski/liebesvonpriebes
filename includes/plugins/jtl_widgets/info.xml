@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding="ISO-8859-1"?>
+<jtlshop3plugin>
+	<Name>JTL Widgets</Name>
+	<Description>Fügt im Dashboard vom JTL-Backend diverse Widgets hinzu.</Description>
+	<Author>JTL-Software-GmbH</Author>
+	<URL>http://www.jtl-software.de</URL>
+	<XMLVersion>100</XMLVersion>
+	<Shop4Version>400</Shop4Version>
+	<PluginID>jtl_widgets</PluginID>
+	<Install>
+		<Version nr="100">
+			<CreateDate>2015-06-01</CreateDate>
+		</Version>
+		<AdminWidget>
+			<Widget>
+				<Title>Top10 Suchanfragen</Title>
+				<Class>Top10Search</Class>
+				<Container>center</Container>
+				<Description></Description>
+				<Pos>4</Pos>
+				<Expanded>1</Expanded>
+				<Active>1</Active>
+			</Widget>
+			<Widget>
+				<Title>Top10 Bestseller</Title>
+				<Class>Top10Bestseller</Class>
+				<Container>center</Container>
+				<Description></Description>
+				<Pos>5</Pos>
+				<Expanded>1</Expanded>
+				<Active>1</Active>
+			</Widget>
+			<Widget>
+				<Title>Shop-Statistiken</Title>
+				<Class>ShopStats</Class>
+				<Container>center</Container>
+				<Description> </Description>
+				<Pos>5</Pos>
+				<Expanded>1</Expanded>
+				<Active>1</Active>
+			</Widget>
+			<Widget>
+				<Title>Letzte Suchanfragen</Title>
+				<Class>LastSearch</Class>
+				<Container>center</Container>
+				<Description></Description>
+				<Pos>6</Pos>
+				<Expanded>1</Expanded>
+				<Active>1</Active>
+			</Widget>
+			<Widget>
+				<Title>Letzte Bestellungen</Title>
+				<Class>LastOrders</Class>
+				<Container>center</Container>
+				<Description></Description>
+				<Pos>1</Pos>
+				<Expanded>1</Expanded>
+				<Active>1</Active>
+			</Widget>
+			<Widget>
+				<Title>Kampagnen</Title>
+				<Class>Campaigns</Class>
+				<Container>center</Container>
+				<Description></Description>
+				<Pos>1</Pos>
+				<Expanded>1</Expanded>
+				<Active>1</Active>
+			</Widget>
+			<Widget>
+				<Title>Anfragen für Freischaltungen</Title>
+				<Class>UnlockRequestNotifier</Class>
+				<Container>left</Container>
+				<Description></Description>
+				<Pos>0</Pos>
+				<Expanded>1</Expanded>
+				<Active>1</Active>
+			</Widget>
+		</AdminWidget>
+	</Install>
+</jtlshop3plugin>
