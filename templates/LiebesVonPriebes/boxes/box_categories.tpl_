@@ -1,0 +1,5 @@
+{if isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
+    {assign var="nID" value=$oBox->kCustomID}
+    {get_category_array categoryId=0 categoryBoxNumber=$nID assign='categories'}
+    
+{/if}

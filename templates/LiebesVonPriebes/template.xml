@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Template>
+    <Name>Liebes von Priebes</Name>
+    <Author>JTL-Software-GmbH</Author>
+    <URL>https://www.liebesvonpriebes.de</URL>
+    <Version>4.05</Version>
+    <ShopVersion>405</ShopVersion>
+    <Parent>Evo</Parent>
+    <Preview>preview.png</Preview>
+    <Description>Template fuer priebes B2B shop</Description>
+    <Settings>
+        <Section Name="Allgemein" Key="general">
+            <Setting Description="test" Key="test" Type="select" Value="N">
+                <Option Value="Y">Ja</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+        </Section>
+        <Section Name="Theme" Key="theme">
+            <Setting Description="MyTemplate (Beispiel für eine eigene Child-Template-Einstellung)" Key="mytemplate" Type="select" Value="foo">
+                <Option Value="my_setting1">My setting 1</Option>
+                <Option Value="my_setting2">My setting 2</Option>
+            </Setting>
+            <Setting Description="Theme" Key="theme_default" Type="select" Value="mytheme">
+                <Option Value="mytheme">MyTheme - mein eigenes Theme!</Option>
+            </Setting>
+            <Setting Description="Hintergrundbild (überschreibt die vorhandene Standard-Evo-Einstellung)" Key="background_image" Type="select" Value="">
+                <Option Value="foo">Foo</Option>
+                <Option Value="bar">Bar</Option>
+            </Setting>
+        </Section>
+    </Settings>
+    <Minify>
+        <JS Name="jtl3.js">
+            <File Path="js/conf.test.js" DependsOnSettingGroup="CONF_PREISVERLAUF" DependsOnSetting="preisverlauf.preisverlauf_anzeigen" DependsOnSettingValue="Y"/>
+            <File Path="js/mytheme.js"/>
+            <File Path="js/jtl.basket.js" override="true"/>
+        </JS>
+        <CSS Name="mytheme.css">
+            <File Path="themes/priebes/bootstrap.css"/>
+            <File Path="themes/priebes/custom.css"/>
+            <File Path="../Evo/themes/base/offcanvas-menu.css"/>
+            <File Path="../Evo/themes/base/pnotify.custom.css"/>
+            <File Path="../Evo/themes/base/jquery-slider.css"/>
+        </CSS>
+    </Minify>
+    <Boxes>
+        <Container Position="right" Available="1"></Container>
+    </Boxes>
+</Template>
