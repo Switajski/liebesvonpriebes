@@ -8,14 +8,15 @@
     <Parent>Evo</Parent>
     <Preview>preview.png</Preview>
     <Description>Template fuer priebes B2B shop</Description>
-    <Settings>
-        <Section Name="Theme" Key="theme">
-            <Setting Description="priebes" Key="priebes" <Setting Description="Hintergrundbild (überschreibt die vorhandene Standard-Evo-Einstellung)" Key="background_image" Type="select" Value="">
-                <Option Value="foo">Foo</Option>
-                <Option Value="bar">Bar</Option>
+    <Section Name="Theme" Key="theme">
+        <Settings>
+            <Setting Description="Theme" Key="theme_default" Type="select" Value="evo">
+                <Option Value="evo">Evo - Handgemacht mit <![CDATA[&hearts;]]> von JTL</Option>
+                <Option Value="lumen">Lumen - Licht und Schatten</Option>
+                <Option Value="priebes">Priebes - Auf Basis von Lumen, abgeaendert fuer Priebes</Option>
             </Setting>
-        </Section>
-    </Settings>
+        </Settings>
+    </Section>
     <Minify>
         <JS Name="jtl3.js">
             <File Path="js/conf.test.js" DependsOnSettingGroup="CONF_PREISVERLAUF" DependsOnSetting="preisverlauf.preisverlauf_anzeigen" DependsOnSettingValue="Y"/>
