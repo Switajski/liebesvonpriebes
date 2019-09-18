@@ -9,21 +9,8 @@
     <Preview>preview.png</Preview>
     <Description>Template fuer priebes B2B shop</Description>
     <Settings>
-        <Section Name="Allgemein" Key="general">
-            <Setting Description="test" Key="test" Type="select" Value="N">
-                <Option Value="Y">Ja</Option>
-                <Option Value="N">Nein</Option>
-            </Setting>
-        </Section>
         <Section Name="Theme" Key="theme">
-            <Setting Description="MyTemplate (Beispiel für eine eigene Child-Template-Einstellung)" Key="mytemplate" Type="select" Value="foo">
-                <Option Value="my_setting1">My setting 1</Option>
-                <Option Value="my_setting2">My setting 2</Option>
-            </Setting>
-            <Setting Description="Theme" Key="theme_default" Type="select" Value="mytheme">
-                <Option Value="mytheme">MyTheme - mein eigenes Theme!</Option>
-            </Setting>
-            <Setting Description="Hintergrundbild (überschreibt die vorhandene Standard-Evo-Einstellung)" Key="background_image" Type="select" Value="">
+            <Setting Description="priebes" Key="priebes" <Setting Description="Hintergrundbild (überschreibt die vorhandene Standard-Evo-Einstellung)" Key="background_image" Type="select" Value="">
                 <Option Value="foo">Foo</Option>
                 <Option Value="bar">Bar</Option>
             </Setting>
